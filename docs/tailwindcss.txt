@@ -1,0 +1,12 @@
+https://tailwindcss.com/docs/installation
+npm install -D tailwindcss
+npx tailwindcss init
+
+tailwind.config.js
+  content: ["./src/**/*.{ts,tsx}"],
+
+index.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
