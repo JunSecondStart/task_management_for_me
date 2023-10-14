@@ -8,13 +8,13 @@ import Servermanagement from "../components/Servermanagement";
 import Tips from "../components/Tips";
 import Coding from "../components/Coding";
 
-const Pages: React.FC = () => {
+const Pages:React.FC  = () => {
     return (
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/coding" element={<Coding />} />
             <Route path="/plans" element={<Plans />} />
-            <Route path="/kintone" element={<Kintone />} />
+            <Route path="/kintone" element={<Kintone/>} />
             <Route path="/slack" element={<Slack />} />
             <Route path="/servermanagement" element={<Servermanagement />} />
             <Route path="/tips" element={<Tips />} />
