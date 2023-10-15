@@ -9,10 +9,10 @@ const Tasklist: React.FC = () => {
   const [editContent, seteditContent] = useState("");
 
   function create() {
-    Task.id = Task.id + 1;
-    Task.title = editTitle;
-    Task.content = editContent;
-    Task.check = false;
+    // Task.id = Task.id + 1;
+    Task.title.push(editTitle);
+    Task.content.push(editContent);
+    Task.check.push(false);
     setpageReload(true);
   }
 
@@ -56,11 +56,8 @@ const Tasklist: React.FC = () => {
       </button>
       <section>
         <ul className="text-cyan-400 text-2xl font-bold">
-          <li className="pt-5">No.2552</li>
-          <li className="pt-5">No.2551</li>
-          <li className="pt-5">No.2549</li>
           <li className="pt-5">
-            {Task.id} {Task.title} {Task.content} {Task.check}
+            {Task.title.map((title,i)=>(title))} {Task.content} {Task.check}
           </li>
           <li></li>
           <li></li>
