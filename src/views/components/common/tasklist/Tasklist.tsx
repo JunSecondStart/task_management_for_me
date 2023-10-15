@@ -7,6 +7,7 @@ const Tasklist: React.FC = () => {
   const [pageReload, setpageReload] = useState(false);
   const [editTitle, seteditTitle] = useState("");
   const [editContent, seteditContent] = useState("");
+  const localStorageTask = "";
 
   function create() {
     // Task.id = Task.id + 1;
@@ -14,6 +15,7 @@ const Tasklist: React.FC = () => {
     Task.content.push(editContent);
     Task.check.push(false);
     setpageReload(true);
+    localStorage.setItem(localStorageTask,editContent);
   }
 
   useEffect(() => {
@@ -27,41 +29,47 @@ const Tasklist: React.FC = () => {
           Tasklist
         </h4>
       </div>
-      <ul className="flex flex-row text-2xl h-1/6">
-        <li className="mx-20 basis-3/12">
-          <div className="mx-10 text-center">title</div>
-          <textarea
-            className="mx-10 my-5 px-36 py-20 border-black rounded-xl w-full h-4/12"
-            placeholder="title"
-            value={editTitle}
-            onChange={(e) => seteditTitle(e.target.value)}
-          />
-        </li>
-        <li className="mx-20 basis-6/12">
-          <div className="mx-10 text-center">content</div>
-          <textarea
-            className="mx-10 my-5 px-36 py-20 border-black rounded-xl w-full h-4/12"
-            placeholder="content"
-            value={editContent}
-            onChange={(e) => seteditContent(e.target.value)}
-          />
-        </li>
-      </ul>
-      <button
-        className="bg-cyan-400 text-2xl w-36 h-20"
-        type="button"
-        onClick={() => create()}
-      >
-        create
-      </button>
-      <section>
+      <section className="flex flex-row">
+      <div className="basis-1/3">
+        <ul className="text-2xl h-1/6">
+          <li className="mx-20">
+            <div className="mx-10 text-center">title</div>
+            <textarea
+              className="mx-10 my-5 px-36 py-5 border-black rounded-xl w-full h-2/12"
+              placeholder="title"
+              value="title:"
+              onChange={(e) => seteditTitle(e.target.value)}
+            />
+          </li>
+          <li className="mx-20">
+            <div className="mx-10 text-center">content</div>
+            <textarea
+              className="mx-10 my-5 px-36 py-20 border-black rounded-xl w-full h-4/12"
+              placeholder="content"
+              value={editContent}
+              onChange={(e) => seteditContent(e.target.value)}
+            />
+          </li>
+          <li className="text-center">
+              <button
+              className="bg-cyan-400 text-2xl w-36 h-20"
+              type="button"
+              onClick={() => create()}
+            >
+              create
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div className="basis-2/3">
         <ul className="text-cyan-400 text-2xl font-bold">
           <li className="pt-5">
-            {Task.title.map((title,i)=>(title))} {Task.content} {Task.check}
+            {Task.title.map((title,i)=>(title+" "))} {Task.content.map((content,i)=>(content+" "))} {Task.check}
           </li>
           <li></li>
           <li></li>
         </ul>
+      </div>
       </section>
     </section>
   );

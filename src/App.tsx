@@ -6,17 +6,17 @@ const App:React.FC = () => {
   return (
     <>
       <TaskFieldContextProvider>
-        <div className="text-cyan-300 bg-cyan-50 text-center py-10 text-5xl font-bold">
+        <div className="text-sky-300 bg-sky-100 text-center py-10 text-5xl font-bold">
           Task Management For Me
         </div>
-        <section className="my-10">
+        <section className="py-10 bg-cyan-50">
           <ul className="flex flex-row">
-            <li className="basis-1/6 text-3xl text-center text-sky-500"><Link to="/coding">Coding</Link></li>
-            <li className="basis-1/6 text-3xl text-center text-sky-500"><Link to="/plans">Plans</Link></li>
-            <li className="basis-1/6 text-3xl text-center text-sky-500"><Link to="/kintone">Kintone</Link></li>
-            <li className="basis-1/6 text-3xl text-center text-sky-500"><Link to="/slack">Slack</Link></li>
-            <li className="basis-1/6 text-3xl text-center text-sky-500"><Link to="/servermanagement">Servermanagement</Link></li>
-            <li className="basis-1/6 text-3xl text-center text-sky-500"><Link to="/tips">Tips</Link></li>
+            <li className="basis-1/6 text-3xl text-center text-cyan-300"><Link to="/coding">Coding</Link></li>
+            <li className="basis-1/6 text-3xl text-center text-cyan-300"><Link to="/plans">Plans</Link></li>
+            <li className="basis-1/6 text-3xl text-center text-cyan-300"><Link to="/kintone">Kintone</Link></li>
+            <li className="basis-1/6 text-3xl text-center text-cyan-300"><Link to="/slack">Slack</Link></li>
+            <li className="basis-1/6 text-3xl text-center text-cyan-300"><Link to="/servermanagement">Servermanagement</Link></li>
+            <li className="basis-1/6 text-3xl text-center text-cyan-300"><Link to="/tips">Tips</Link></li>
           </ul>
         </section>
         <section>

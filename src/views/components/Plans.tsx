@@ -1,7 +1,7 @@
 const Plans = () => {
     return (
         <div>
-            <h4 className="text-cyan-300 bg-cyan-50 text-center py-10 text-2xl font-bold">Plans</h4>
+            <h4 className="text-sky-300 bg-sky-100  text-center py-10 text-2xl font-bold">Plans</h4>
         </div>
     );
 }
