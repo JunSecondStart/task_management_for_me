@@ -7,16 +7,19 @@ const Tasklist: React.FC = () => {
   const [pageReload, setpageReload] = useState(false);
   const [editTitle, seteditTitle] = useState("");
   const [editContent, seteditContent] = useState("");
-  const localStorageTask = "";
+  const localStorageTask = "localStoragesNowTask";
 
   function create() {
-    // Task.id = Task.id + 1;
-    Task.title.push(editTitle);
-    Task.content.push(editContent);
-    Task.check.push(false);
+    Task.taskContent.title.push(editTitle);
+    Task.taskContent.content.push("「"+editContent+"」");
+    Task.taskContent.check.push(false);
     setpageReload(true);
     localStorage.setItem(localStorageTask,editContent);
-  }
+  };
+
+  function destroy() {
+    localStorage.clear();
+  };
 
   useEffect(() => {
     setpageReload(false);
@@ -35,39 +38,48 @@ const Tasklist: React.FC = () => {
           <li className="mx-20">
             <div className="mx-10 text-center">title</div>
             <textarea
-              className="mx-10 my-5 px-36 py-5 border-black rounded-xl w-full h-2/12"
+              className="mx-10 my-5 px-5 py-5 border-black rounded-xl w-full h-2/12"
               placeholder="title"
-              value="title:"
+              value={editTitle}
               onChange={(e) => seteditTitle(e.target.value)}
             />
           </li>
           <li className="mx-20">
             <div className="mx-10 text-center">content</div>
             <textarea
-              className="mx-10 my-5 px-36 py-20 border-black rounded-xl w-full h-4/12"
+              className="mx-10 my-5 px-5 py-20 border-black rounded-xl w-full h-4/12"
               placeholder="content"
               value={editContent}
               onChange={(e) => seteditContent(e.target.value)}
             />
           </li>
           <li className="text-center">
-              <button
+            <button
               className="bg-cyan-400 text-2xl w-36 h-20"
               type="button"
               onClick={() => create()}
             >
               create
             </button>
+            <button
+              className="bg-red-400 text-2xl w-36 h-20"
+              type="button"
+              onClick={() => destroy()}
+            >
+              delete
+            </button>
           </li>
         </ul>
       </div>
       <div className="basis-2/3">
         <ul className="text-cyan-400 text-2xl font-bold">
-          <li className="pt-5">
-            {Task.title.map((title,i)=>(title+" "))} {Task.content.map((content,i)=>(content+" "))} {Task.check}
+        {/* <li>{Task.title.map((title,i)=>(title+" "))}</li> */}
+          <li className="px-20">
+            <div className="flex flex-row">
+              <div className="basis=3/12">{Task.taskContent.title.map((title,i)=>(title+" \n"))}</div>
+              <div className="basis=7/12">{Task.taskContent.content.map((taskContent,i)=>(taskContent+" "))}</div> 
+            </div>         
           </li>
-          <li></li>
-          <li></li>
         </ul>
       </div>
       </section>
