@@ -1,9 +1,11 @@
 const Coding = () => {
-    return (
-        <div>
-            <h4 className="text-cyan-300 bg-cyan-50 text-center py-10 text-2xl font-bold">Coding</h4>
-        </div>
-    );
-}
+  return (
+    <div>
+      <h4 className="text-cyan-300 bg-cyan-50 text-center py-10 text-2xl font-bold">
+        Coding
+      </h4>
+    </div>
+  );
+};
 
 export default Coding;
