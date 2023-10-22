@@ -9,10 +9,10 @@ const Tasklist: React.FC= () => {
   const [editTitle, seteditTitle] = useState("");
   const [editContent, seteditContent] = useState("");
   const localStorageTask = "localStoragesNowTask";
-  let var_id=0;
+
 
   function create() {
-    Task.storedtasks.push({id:var_id+1,title:editTitle,content:editContent,check:false});
+    Task.storedtasks.push({title:editTitle,content:editContent,check:false});
     setpageReload(true);
     localStorage.setItem(localStorageTask,editContent);
   };
@@ -76,15 +76,10 @@ const Tasklist: React.FC= () => {
         <ul className="text-cyan-400 text-2xl font-bold">
         {/* <li>{Task.title.map((title,i)=>(title+" "))}</li> */}
           <li className="px-20">
-            <div className="flex flex-row">
-              <div className="basis=3/12">
-              <div className="basis=3/12">{Task.storedtasks.map((storedtask,i)=>(
+              <div>{Task.storedtasks.map((storedtask,i)=>(
                   <Taskstore storedtask={storedtask} idx={i}/>
                 ))}</div>
-              </div>
-
-              {/* <div className="basis=7/12">{Task.taskContent.content.map((taskContent,i)=>(taskContent+" "))}</div>  */}
-            </div>         
+              {/* <div className="basis=7/12">{Task.taskContent.content.map((taskContent,i)=>(taskContent+" "))}</div>  */}        
           </li>
         </ul>
       </div>
