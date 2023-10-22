@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import { useTask } from "../../../../context";
+import Taskstore from "./Taskstore";
 
-const Tasklist: React.FC = () => {
+const Tasklist: React.FC= () => {
   /* ----- context ----- */
   const Task = useTask();
   const [pageReload, setpageReload] = useState(false);
   const [editTitle, seteditTitle] = useState("");
   const [editContent, seteditContent] = useState("");
   const localStorageTask = "localStoragesNowTask";
+  let var_id=0;
 
   function create() {
-    Task.taskContent.title.push(editTitle);
-    Task.taskContent.content.push("「"+editContent+"」");
-    Task.taskContent.check.push(false);
+    Task.storedtasks.push({id:var_id+1,title:editTitle,content:editContent,check:false});
     setpageReload(true);
     localStorage.setItem(localStorageTask,editContent);
   };
@@ -23,6 +23,7 @@ const Tasklist: React.FC = () => {
 
   useEffect(() => {
     setpageReload(false);
+    console.log(pageReload);
   }, [pageReload]);
 
   return (
@@ -64,7 +65,7 @@ const Tasklist: React.FC = () => {
             <button
               className="bg-red-400 text-2xl w-36 h-20"
               type="button"
-              onClick={() => destroy()}
+              onChange={() => setpageReload }
             >
               delete
             </button>
@@ -76,8 +77,13 @@ const Tasklist: React.FC = () => {
         {/* <li>{Task.title.map((title,i)=>(title+" "))}</li> */}
           <li className="px-20">
             <div className="flex flex-row">
-              <div className="basis=3/12">{Task.taskContent.title.map((title,i)=>(title+" \n"))}</div>
-              <div className="basis=7/12">{Task.taskContent.content.map((taskContent,i)=>(taskContent+" "))}</div> 
+              <div className="basis=3/12">
+              <div className="basis=3/12">{Task.storedtasks.map((storedtask,i)=>(
+                  <Taskstore storedtask={storedtask} idx={i}/>
+                ))}</div>
+              </div>
+
+              {/* <div className="basis=7/12">{Task.taskContent.content.map((taskContent,i)=>(taskContent+" "))}</div>  */}
             </div>         
           </li>
         </ul>

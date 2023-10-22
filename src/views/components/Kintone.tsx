@@ -1,5 +1,6 @@
 import Tasklist from "./common/tasklist/Tasklist";
 import React from "react";
+import { taskContext } from "../../types";
 
 const Kintone: React.FC = () => {
     return (

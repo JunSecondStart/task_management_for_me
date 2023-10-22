@@ -1,19 +1,21 @@
-import { VoidExpression } from "typescript";
-
-export type taskContext = taskState & taskFunc;
+export type taskContext = taskState & storedtask & taskFunc;
 
 export type taskState = {
-    id : number[];
-    title : string[];
-    taskContent : taskContent;
-    check: boolean[];
+    storedtasks : storedtask[];
 };
 
-export type taskContent = {
-    id : number[];
-    title : string[];
-    content : string[];
-    check: boolean[];
+// export type taskContent = {
+//     id : number[];
+//     title : string[];
+//     content : string[];
+//     check: boolean[];
+// }
+
+export type storedtask = {
+    id?: number;
+    title?: string;
+    content?: string;
+    check?: boolean;
 }
 
 export type taskFunc = {
