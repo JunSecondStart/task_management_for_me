@@ -1,12 +1,15 @@
 import Tasklist from "./common/tasklist/Tasklist";
 import React from "react";
 import { taskContext } from "../../types";
+import Modal from "./common/Modal"
 
 const Kintone: React.FC = () => {
     return (
         <>
             <section>
-
+                <div>
+                    <Modal />
+                </div>
             </section>
             {/* <section>
                 <ul>

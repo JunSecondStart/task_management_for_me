@@ -10,14 +10,15 @@ const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
     (storedtask.check = storedtask.check)
   );
   const [style, setstyle] = useState("");
-  const [detailCheck, setdetailCheck]= useState(true);
+  const [detailCheck, setdetailCheck]= useState(storedtask.detailCheck = storedtask.detailCheck );
   const [detailStyle, setdetailStyle]= useState("");
+  const [dropWindow,setdropWindow] = useState(storedtask.dropWindow = storedtask.dropWindow);
+  const [dropWindowStyle, setdropWindowStyle]= useState("");
 
   const check = () => {
     checkbox === false
       ? setcheckbox((storedtask.check = true))
       : setcheckbox((storedtask.check = false));
-    console.log(checkbox);
   };
 
   useEffect(() => {
@@ -27,7 +28,29 @@ const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
   }, [checkbox]);
 
   const detail = () => {
-    detailCheck===false ? setdetailCheck(true): setdetailCheck(false);
+    if(detailCheck===false){
+      setdetailCheck(storedtask.detailCheck = true);
+      setdropWindow(storedtask.dropWindow = true);
+  }else{
+      setdetailCheck(storedtask.detailCheck = false);
+      setdropWindow(storedtask.dropWindow = false);
+    };
+    console.log(dropWindow);
+  }
+
+  useEffect(() => {
+    if(detailCheck === false){
+      setdetailStyle("!bg-blue-200 !text-red-500");
+      setdropWindowStyle("truncate");
+    }else{
+      setdetailStyle("text-cyan-400 py-2");
+      setdropWindowStyle("");
+    }
+  }, [detailCheck]);
+
+
+  const drop = () => {
+    detailCheck===false ? setdetailCheck(storedtask.detailCheck = true): setdetailCheck(storedtask.detailCheck = false);
     console.log(detailCheck);
   }
 
@@ -48,11 +71,11 @@ const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
                 <p>id</p>
                 {idx}
               </div>
-              <div className="text-center w-32 py-1 truncate">
+              <div className={`text-center w-32 py-1 ${dropWindowStyle}`}>
                 <p>title</p>
                 {storedtask.title}
               </div>
-              <div className="text-center w-36  py-1 truncate">
+              <div className={`text-center w-32 py-1 ${dropWindowStyle}`}>
                 <p>content</p>
                 {storedtask.content}
               </div>

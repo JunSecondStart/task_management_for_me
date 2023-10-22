@@ -15,6 +15,8 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
             content: "content",
             title: "title",
             check: false,
+            detailCheck: true,
+            dropWindow: false,
         } as storedtask)),
     });
     return <TaskContext.Provider value={{ ...task }}>{children}</TaskContext.Provider>
