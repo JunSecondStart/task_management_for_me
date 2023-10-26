@@ -1,5 +1,3 @@
-import e from "express";
-import { on } from "process";
 import { useEffect, useState } from "react";
 import { storedtask } from "../../../../types";
 
@@ -56,8 +54,8 @@ const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
 
   useEffect(() => {
     detailCheck === false
-      ? setdetailStyle("!bg-blue-200 !text-red-500")
-      : setdetailStyle("text-cyan-400 py-2");
+      ? setdetailStyle("!bg-white !text-red-400  px-2 pb-1")
+      : setdetailStyle("bg-cyan-400 text-white px-2 pb-1");
   }, [detailCheck]);
 
   return (
@@ -96,9 +94,9 @@ const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
               </div>
               {/* <div className="basis=7/12">{Task.taskContent.content.map((taskContent,i)=>(taskContent+" "))}</div>  */}
 
-              <div className={`text-center w-32 p-2 ${detailStyle}`}>
+              <div className="text-center w-32 p-2">
                 <button
-                  className="w-full"
+                  className={`w-full ${detailStyle}`}
                   type="button"
                   onClick={() => detail()}
                 >
