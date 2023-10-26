@@ -17,7 +17,7 @@ export type storedtask = {
     content?: string;
     check?: boolean;
     detailCheck?: boolean;
-    dropWindow?: boolean;
+    openModal?: boolean;
 }
 
 export type taskFunc = {

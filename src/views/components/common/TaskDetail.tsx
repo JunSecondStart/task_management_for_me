@@ -15,16 +15,24 @@ const TaskDetail: React.FC<Props> = ( { storedtask, idx } ) => {
       <Modal show={props.openModal === 'default'} onClose={() => props.setOpenModal(undefined)}>
         <Modal.Header>{}</Modal.Header>
         <Modal.Body>
-          <div className="space-y-6">
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-              With less than a month to go before the European Union enacts new consumer privacy laws for its citizens,
-              companies around the world are updating their terms of service agreements to comply.
-            </p>
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-              The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to
-              ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as
-              possible of high-risk data breaches that could personally affect them.
-            </p>
+          <div className="flex flex-row space-x-10">
+                <div className="text-center py-2 w-16">
+                  <p>id</p>
+                  {idx}
+                </div>
+                <div className="text-center py-2 w-16">
+                  <p>title</p>
+                  {storedtask.title}
+                </div>
+                <div className="text-center py-2 w-16">
+                  <p>content</p>
+                  {storedtask.content}
+                </div>
+                <div className="text-center w-24 py-6">
+                  <span className="w-full">
+                    {storedtask.check ? "complete" : "no clear"}
+                  </span>
+                </div>
           </div>
         </Modal.Body>
         <Modal.Footer>
