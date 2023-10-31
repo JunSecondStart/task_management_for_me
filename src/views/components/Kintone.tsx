@@ -7,11 +7,6 @@ import TaskDetail from "./common/TaskDetail"
 const Kintone: React.FC = () => {
     return (
         <>
-            <section>
-                <div>
-                    <Modal />
-                </div>
-            </section>
             {/* <section>
                 <ul>
                     <li className="text-lg pt-5">No.2552</li>

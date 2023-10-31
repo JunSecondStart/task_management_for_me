@@ -17,9 +17,9 @@ export type storedtask = {
     content?: string;
     check?: boolean;
     detailCheck?: boolean;
-    openModal?: boolean;
 }
 
 export type taskFunc = {
+    // contextReload: () => void;
     // openCells: (idx: number, status: CellStatusType) => void;
 };

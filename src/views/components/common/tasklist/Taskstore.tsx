@@ -1,41 +1,32 @@
 import { useEffect, useState } from "react";
+import { useTask } from "../../../../context"
 import { storedtask } from "../../../../types";
 import TaskDetail from "../../common/TaskDetail";
 
 type Props = { storedtask: storedtask; idx: number };
 const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
   /* ----- context ----- */
-  const [checkbox, setcheckbox] = useState(
-    (storedtask.check = storedtask.check)
-  );
+  // const [checkbox, setcheckbox] = useState(
+  //   (storedtask.check = storedtask.check)
+  // );
+  const Task = useTask();
   const [style, setstyle] = useState("");
   const [detailCheck, setdetailCheck]= useState(storedtask.detailCheck = storedtask.detailCheck );
   const [detailStyle, setdetailStyle]= useState("");
-  const [openModal,setopenModal] = useState(storedtask.openModal = storedtask.openModal);
   const [openModalStyle, setopenModalStyle]= useState("");
 
-  const check = () => {
-    checkbox === false
-      ? setcheckbox((storedtask.check = true))
-      : setcheckbox((storedtask.check = false));
-  };
+  // const check = () => {
+  //   checkbox === false
+  //     ? setcheckbox((storedtask.check = true))
+  //     : setcheckbox((storedtask.check = false));
+  // };
+  // console.log(Task.openModal);
 
   useEffect(() => {
-    checkbox === true
+    storedtask.check === true
       ? setstyle("bg-yellow-200 text-red-400")
       : setstyle("text-cyan-400");
-  }, [checkbox]);
-
-  const detail = () => {
-    if(detailCheck===false){
-      setdetailCheck(storedtask.detailCheck = true);
-      setopenModal(storedtask.openModal = true);
-  }else{
-      setdetailCheck(storedtask.detailCheck = false);
-      setopenModal(storedtask.openModal = false);
-    };
-    console.log(openModal);
-  }
+  }, [storedtask.check]);
 
   useEffect(() => {
     if(detailCheck === false){
@@ -47,18 +38,21 @@ const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
     }
   }, [detailCheck]);
 
-  const openDetailModal = () => {
 
-  }
 
-  useEffect(()=>{
-    openDetailModal();
-  },[openModal])
+ 
+  // Task.openModal? console.log(Task.openModal):(
+  //   // useEffect(()=>{
+  //     console.log(Task.openModal)
+
+  //   // },[])
+  // );
+
 
 
   const drop = () => {
     detailCheck===false ? setdetailCheck(storedtask.detailCheck = true): setdetailCheck(storedtask.detailCheck = false);
-    console.log(detailCheck);
+    // console.log(detailCheck);
   }
 
   useEffect(() => {
@@ -92,7 +86,7 @@ const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
                   </span>
                 </div>
 
-                <div className="text-center w-16  py-6">
+                {/* <div className="text-center w-16  py-6">
                   <button
                     className="w-full"
                     type="button"
@@ -100,8 +94,7 @@ const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
                   >
                     {storedtask.check ? "on" : "off"}
                   </button>
-                </div>
-                {/* <div className="basis=7/12">{Task.taskContent.content.map((taskContent,i)=>(taskContent+" "))}</div>  */}
+                </div> */}
 
                 <div className="text-center w-32 p-2">
                   {/* <button
