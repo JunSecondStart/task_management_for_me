@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { storedtask, taskContext, taskFunc, taskState } from "../types";
+import { storedtask, taskContext, TaskFunc, taskState } from "../types";
 import _ from "lodash";
 
 const TaskContext = createContext({} as taskContext);
@@ -24,19 +24,50 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
             title: "title",
             check: false,
             detailCheck: true,
-            dropWindow: false,
           } as storedtask)
       ),
   });
 
-  const [openModal, setopenModal] = useState<boolean>(false);
+  // const [openModal, setopenModal] = useState<boolean>(false);
 
   // function contextReload(){
   //       setTask();
   // };
 
+  const taskFunc: TaskFunc = {
+    taskCreate: (title, content) => {
+      setTask((prev) => {
+        let id = 1;
+        const latestTask = prev.storedtasks.at(-1);
+        if (latestTask) {
+          id = latestTask.id + 1;
+        }
+        const newTask: storedtask = {
+          id,
+          title,
+          content,
+          check: false,
+        };
+        return { ...prev, storedtasks: [...prev.storedtasks, newTask] };
+      });
+    },
+    taskComplete: (id, isComplete) => {
+      setTask((prev) => {
+        const updated = prev.storedtasks.map((task) =>
+          task.id === id ? { ...task, check: isComplete } : task
+        );
+        return { ...prev, storedtasks: updated };
+      });
+    },
+    deleteAll: () => {
+      setTask((prev) => ({ ...prev, storedtasks: [] }));
+    },
+  };
+
+  // filter
+
   return (
-    <TaskContext.Provider value={{ ...task }}>
+    <TaskContext.Provider value={{ ...task, ...taskFunc }}>
       {children}
     </TaskContext.Provider>
   );

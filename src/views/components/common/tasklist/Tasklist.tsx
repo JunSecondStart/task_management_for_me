@@ -5,10 +5,8 @@ import Taskstore from "./Taskstore";
 const Tasklist: React.FC = () => {
   /* ----- context ----- */
   const Task = useTask();
-  const [pageReload, setpageReload] = useState(false);
   const [editTitle, seteditTitle] = useState("");
   const [editContent, seteditContent] = useState("");
-  const localStorageTask = "localStoragesNowTask";
   const [closeReload, setCloseReload] = useState(false);
 
   const handleValueChange = () => {
@@ -16,23 +14,12 @@ const Tasklist: React.FC = () => {
   };
 
   function create() {
-    Task.storedtasks.push({
-      title: editTitle,
-      content: editContent,
-      check: false,
-    });
-    setpageReload(true);
-    localStorage.setItem(localStorageTask, editContent);
+    Task.taskCreate(editTitle, editContent);
   }
 
   function destroy() {
     localStorage.clear();
   }
-
-  useEffect(() => {
-    setpageReload(false);
-    // console.log(pageReload);
-  }, [pageReload]);
 
   return (
     <section className="bg-cyan-50">
@@ -73,7 +60,7 @@ const Tasklist: React.FC = () => {
               <button
                 className="bg-red-400 text-2xl w-36 h-20"
                 type="button"
-                onChange={() => setpageReload}
+                onClick={() => Task.deleteAll()}
               >
                 delete
               </button>

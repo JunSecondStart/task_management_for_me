@@ -1,7 +1,7 @@
-export type taskContext = taskState & storedtask & taskFunc;
+export type taskContext = taskState & TaskFunc;
 
 export type taskState = {
-    storedtasks : storedtask[];
+  storedtasks: storedtask[];
 };
 
 // export type taskContent = {
@@ -12,14 +12,17 @@ export type taskState = {
 // }
 
 export type storedtask = {
-    id?: number;
-    title?: string;
-    content?: string;
-    check?: boolean;
-    detailCheck?: boolean;
-}
+  id: number;
+  title: string;
+  content: string;
+  check: boolean;
+  detailCheck?: boolean;
+};
 
-export type taskFunc = {
-    // contextReload: () => void;
-    // openCells: (idx: number, status: CellStatusType) => void;
+export type TaskFunc = {
+  taskCreate: (title: string, content: string) => void;
+  taskComplete: (id: number, isComplete: boolean) => void;
+  deleteAll: () => void;
+  // contextReload: () => void;
+  // openCells: (idx: number, status: CellStatusType) => void;
 };
