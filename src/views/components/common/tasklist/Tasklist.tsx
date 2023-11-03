@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTask } from "../../../../context";
 import Taskstore from "./Taskstore";
 
@@ -7,19 +7,17 @@ const Tasklist: React.FC = () => {
   const Task = useTask();
   const [editTitle, seteditTitle] = useState("");
   const [editContent, seteditContent] = useState("");
-  const [closeReload, setCloseReload] = useState(false);
-
-  const handleValueChange = () => {
-    setCloseReload(true);
-  };
+  const [readTasksArrayForDisplay, setreadTasksArrayForDisplay] = useState([]);
 
   function create() {
     Task.taskCreate(editTitle, editContent);
   }
 
-  function destroy() {
-    localStorage.clear();
-  }
+  function display() {}
+
+  // function destroy() {
+  //   localStorage.clear();
+  // }
 
   return (
     <section className="bg-cyan-50">

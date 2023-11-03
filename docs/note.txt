@@ -1,0 +1,26 @@
+
+
+2023/11/02
+TaskDetailを閉じたときに、Tasklistコンポーネントに再レンダリングがかかるように、
+context/index.tsx内のsetTaskを更新して、再レンダリングがかかるように、
+関数を作成し、onclick時に動作するように先輩にレクチャー頂く。
+
+2023/11/03
+配列をlocalstrageに格納。
+https://yurupro.cloud/3107/
+localstrage.setItem("文字列A",atai)
+
+
+
+localstrageからデータを読み込み、表示させられるように
+localstrage.getItem("文字列A")を利用
+
+<key の取得>
+localStorage.setItem("Name", "takuya");
+let kye = localStorage.key(0);
+console.log(kye);
+
+<value　の取得>
+localStorage.setItem("Name", "takuya")
+let name = localStorage.getItem("Name")
+console.log(name);

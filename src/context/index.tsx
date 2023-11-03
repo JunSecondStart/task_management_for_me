@@ -1,11 +1,11 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
-import { storedtask, taskContext, TaskFunc, taskState } from "../types";
+import React, { createContext, useContext, useState } from "react";
+import {
+  localstoragetask,
+  storedtask,
+  taskContext,
+  TaskFunc,
+  taskState,
+} from "../types";
 import _ from "lodash";
 
 const TaskContext = createContext({} as taskContext);
@@ -25,6 +25,18 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
             check: false,
             detailCheck: true,
           } as storedtask)
+      ),
+    localstoragetasks: Array(1)
+      .fill(null)
+      .map(
+        (_, i) =>
+          ({
+            id: 1,
+            content: "content",
+            title: "title",
+            check: false,
+            detailCheck: true,
+          } as localstoragetask)
       ),
   });
 
@@ -48,6 +60,8 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
           content,
           check: false,
         };
+        const localStorageTask = JSON.stringify(prev.storedtasks);
+        localStorage.setItem("localStorageTask", localStorageTask);
         return { ...prev, storedtasks: [...prev.storedtasks, newTask] };
       });
     },
