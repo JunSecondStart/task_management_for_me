@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTask } from "../../../../context";
 import Taskstore from "./Taskstore";
+import { read } from "fs";
 
 const Tasklist: React.FC = () => {
   /* ----- context ----- */
@@ -13,7 +14,13 @@ const Tasklist: React.FC = () => {
     Task.taskCreate(editTitle, editContent);
   }
 
-  function display() {}
+  function read() {
+    const getLocalstorage = localStorage.getItem("localStorageTask");
+    if (getLocalstorage) {
+      const jsonTasklist = JSON.parse(getLocalstorage);
+      console.log(jsonTasklist);
+    }
+  }
 
   // function destroy() {
   //   localStorage.clear();
@@ -61,6 +68,13 @@ const Tasklist: React.FC = () => {
                 onClick={() => Task.deleteAll()}
               >
                 delete
+              </button>
+              <button
+                className="bg-green-300 text-2xl w-36 h-20"
+                type="button"
+                onClick={() => read()}
+              >
+                read
               </button>
             </li>
           </ul>
