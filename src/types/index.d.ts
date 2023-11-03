@@ -2,6 +2,9 @@ export type taskContext = taskState & TaskFunc;
 
 export type taskState = {
   storedtasks: storedtask[];
+};
+
+export type localState = {
   localstoragetasks: localstoragetask[];
 };
 

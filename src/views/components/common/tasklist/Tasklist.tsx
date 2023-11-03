@@ -2,24 +2,59 @@ import { useState } from "react";
 import { useTask } from "../../../../context";
 import Taskstore from "./Taskstore";
 import { read } from "fs";
+import { localState, localstoragetask, taskState } from "../../../../types";
+import { values } from "lodash";
 
 const Tasklist: React.FC = () => {
   /* ----- context ----- */
   const Task = useTask();
   const [editTitle, seteditTitle] = useState("");
   const [editContent, seteditContent] = useState("");
-  const [readTasksArrayForDisplay, setreadTasksArrayForDisplay] = useState([]);
+  const [localTasklistArray, setlocalTasklistArray] = useState<localState>({
+    localstoragetasks: Array(1)
+      .fill(null)
+      .map(
+        (_, i) =>
+          ({
+            id: 1,
+            content: "content",
+            title: "title",
+            check: false,
+            detailCheck: true,
+          } as localstoragetask)
+      ),
+  });
 
   function create() {
     Task.taskCreate(editTitle, editContent);
   }
 
-  function read() {
+  function readLocal() {
     const getLocalstorage = localStorage.getItem("localStorageTask");
     if (getLocalstorage) {
       const jsonTasklist = JSON.parse(getLocalstorage);
       console.log(jsonTasklist);
+      setlocalTasklistArray((prev) => {
+        const newLocalTask: localstoragetask = {
+          id: 2,
+          title: "もう少し",
+          content: "でできそう",
+          check: false,
+        };
+        return {
+          ...prev,
+          storedtasks: [...prev.localstoragetasks, newLocalTask],
+        };
+      });
+
+      return jsonTasklist;
     }
+  }
+
+  function seeLocal() {
+    const jsonTasklist = readLocal();
+
+    console.log(localTasklistArray);
   }
 
   // function destroy() {
@@ -72,9 +107,16 @@ const Tasklist: React.FC = () => {
               <button
                 className="bg-green-300 text-2xl w-36 h-20"
                 type="button"
-                onClick={() => read()}
+                onClick={() => readLocal()}
               >
                 read
+              </button>
+              <button
+                className="bg-yellow-300 text-2xl w-36 h-20"
+                type="button"
+                onClick={() => seeLocal()}
+              >
+                see
               </button>
             </li>
           </ul>
@@ -89,6 +131,13 @@ const Tasklist: React.FC = () => {
                 ))}
               </div>
               {/* <div className="basis=7/12">{Task.taskContent.content.map((taskContent,i)=>(taskContent+" "))}</div>  */}
+            </li>
+          </ul>
+          <ul className="text-cyan-400 text-2xl font-bold">
+            <li className="px-20">
+              <div>
+                {Object.values(localTasklistArray).map((key, value) => value)}
+              </div>
             </li>
           </ul>
         </div>

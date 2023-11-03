@@ -26,18 +26,6 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
             detailCheck: true,
           } as storedtask)
       ),
-    localstoragetasks: Array(1)
-      .fill(null)
-      .map(
-        (_, i) =>
-          ({
-            id: 1,
-            content: "content",
-            title: "title",
-            check: false,
-            detailCheck: true,
-          } as localstoragetask)
-      ),
   });
 
   // const [openModal, setopenModal] = useState<boolean>(false);
