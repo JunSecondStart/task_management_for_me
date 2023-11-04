@@ -5,6 +5,7 @@ import {
   taskContext,
   TaskFunc,
   taskState,
+  localState,
 } from "../types";
 import _ from "lodash";
 
@@ -28,6 +29,24 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
       ),
   });
 
+  const [localTasklist, setlocalTasklist] = useState<localState>({
+    localstoragetasks: Array(1)
+      .fill(null)
+      .map(
+        (_, i) =>
+          ({
+            id: 1,
+            content: "content",
+            title: "title",
+            check: false,
+            detailCheck: true,
+          } as localstoragetask)
+      ),
+  });
+
+  const [title, setTitle] = useState<string>("");
+  const [content, setContent] = useState<string>("");
+
   // const [openModal, setopenModal] = useState<boolean>(false);
 
   // function contextReload(){
@@ -48,8 +67,6 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
           content,
           check: false,
         };
-        const localStorageTask = JSON.stringify(prev.storedtasks);
-        localStorage.setItem("localStorageTask", localStorageTask);
         return { ...prev, storedtasks: [...prev.storedtasks, newTask] };
       });
     },
@@ -63,13 +80,44 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
     },
     deleteAll: () => {
       setTask((prev) => ({ ...prev, storedtasks: [] }));
+      localStorage.clear();
+    },
+    taskWrite: () => {
+      const localStorageTask = JSON.stringify(task.storedtasks);
+      localStorage.setItem("localStorageTask", localStorageTask);
+    },
+    taskRead: () => {
+      setlocalTasklist((prev) => {
+        let id = 1;
+        const latestTask = prev.localstoragetasks.at(-1);
+        if (latestTask) {
+          id = latestTask.id + 1;
+        }
+        const getLocalstorage = localStorage.getItem("localStorageTask");
+        if (getLocalstorage) {
+          const jsonTasklist = JSON.parse(getLocalstorage);
+          console.log(jsonTasklist.map((title) => title.title));
+          setTitle("title2");
+          setContent("content2");
+        }
+        const copyTask: localstoragetask = {
+          id,
+          title: title,
+          content: content,
+          check: false,
+        };
+        return {
+          ...prev,
+          localstoragetasks: [...prev.localstoragetasks, copyTask],
+        };
+      });
     },
   };
 
   // filter
 
   return (
-    <TaskContext.Provider value={{ ...task, ...taskFunc }}>
+    <TaskContext.Provider value={{ ...task, ...localTasklist, ...taskFunc }}>
       {children}
     </TaskContext.Provider>
   );

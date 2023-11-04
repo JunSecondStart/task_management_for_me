@@ -34,32 +34,14 @@ const Tasklist: React.FC = () => {
     if (getLocalstorage) {
       const jsonTasklist = JSON.parse(getLocalstorage);
       console.log(jsonTasklist);
-      setlocalTasklistArray((prev) => {
-        const newLocalTask: localstoragetask = {
-          id: 2,
-          title: "もう少し",
-          content: "でできそう",
-          check: false,
-        };
-        return {
-          ...prev,
-          storedtasks: [...prev.localstoragetasks, newLocalTask],
-        };
-      });
-
       return jsonTasklist;
     }
   }
 
-  function seeLocal() {
-    const jsonTasklist = readLocal();
-
-    console.log(localTasklistArray);
+  function localCheck() {
+    Task.taskWrite();
+    Task.taskRead();
   }
-
-  // function destroy() {
-  //   localStorage.clear();
-  // }
 
   return (
     <section className="bg-cyan-50">
@@ -107,16 +89,9 @@ const Tasklist: React.FC = () => {
               <button
                 className="bg-green-300 text-2xl w-36 h-20"
                 type="button"
-                onClick={() => readLocal()}
+                onClick={() => localCheck()}
               >
-                read
-              </button>
-              <button
-                className="bg-yellow-300 text-2xl w-36 h-20"
-                type="button"
-                onClick={() => seeLocal()}
-              >
-                see
+                localCheck
               </button>
             </li>
           </ul>
@@ -136,7 +111,9 @@ const Tasklist: React.FC = () => {
           <ul className="text-cyan-400 text-2xl font-bold">
             <li className="px-20">
               <div>
-                {Object.values(localTasklistArray).map((key, value) => value)}
+                {Task.localstoragetasks.map((storedtask, i) => (
+                  <Taskstore storedtask={storedtask} idx={i} />
+                ))}
               </div>
             </li>
           </ul>

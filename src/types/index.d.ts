@@ -1,4 +1,4 @@
-export type taskContext = taskState & TaskFunc;
+export type taskContext = taskState & localState & TaskFunc;
 
 export type taskState = {
   storedtasks: storedtask[];
@@ -35,6 +35,8 @@ export type TaskFunc = {
   taskCreate: (title: string, content: string) => void;
   taskComplete: (id: number, isComplete: boolean) => void;
   deleteAll: () => void;
+  taskWrite: () => void;
+  taskRead: () => void;
   // contextReload: () => void;
   // openCells: (idx: number, status: CellStatusType) => void;
 };
