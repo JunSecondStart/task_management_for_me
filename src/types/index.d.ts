@@ -8,13 +8,6 @@ export type localState = {
   localstoragetasks: localstoragetask[];
 };
 
-// export type taskContent = {
-//     id : number[];
-//     title : string[];
-//     content : string[];
-//     check: boolean[];
-// }
-
 export type storedtask = {
   id: number;
   title: string;
@@ -37,6 +30,7 @@ export type TaskFunc = {
   deleteAll: () => void;
   taskWrite: () => void;
   taskRead: () => void;
+  saveClear: () => void;
   // contextReload: () => void;
   // openCells: (idx: number, status: CellStatusType) => void;
 };

@@ -1,9 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTask } from "../../../../context";
 import Taskstore from "./Taskstore";
-import { read } from "fs";
 import { localState, localstoragetask, taskState } from "../../../../types";
-import { values } from "lodash";
 
 const Tasklist: React.FC = () => {
   /* ----- context ----- */
@@ -24,6 +22,8 @@ const Tasklist: React.FC = () => {
           } as localstoragetask)
       ),
   });
+  const [title, setTitle] = useState<string>("");
+  const [content, setContent] = useState<string>("");
 
   function create() {
     Task.taskCreate(editTitle, editContent);
@@ -38,9 +38,25 @@ const Tasklist: React.FC = () => {
     }
   }
 
+  function Read() {
+    const getLocalstorage = localStorage.getItem("localStorageTask");
+    if (getLocalstorage) {
+      const jsonparselist = JSON.parse(getLocalstorage);
+      for (let k of jsonparselist) {
+        Task.localstoragetasks.push({
+          id: k.id,
+          content: k.content,
+          title: k.title,
+          check: k.check,
+          detailCheck: k.detailCheck,
+        } as localstoragetask);
+      }
+    }
+  }
+
   function localCheck() {
     Task.taskWrite();
-    Task.taskRead();
+    Read();
   }
 
   return (
@@ -91,7 +107,7 @@ const Tasklist: React.FC = () => {
                 type="button"
                 onClick={() => localCheck()}
               >
-                localCheck
+                Save
               </button>
             </li>
           </ul>
@@ -108,7 +124,7 @@ const Tasklist: React.FC = () => {
               {/* <div className="basis=7/12">{Task.taskContent.content.map((taskContent,i)=>(taskContent+" "))}</div>  */}
             </li>
           </ul>
-          <ul className="text-cyan-400 text-2xl font-bold">
+          {/* <ul className="text-cyan-400 text-2xl font-bold">
             <li className="px-20">
               <div>
                 {Task.localstoragetasks.map((storedtask, i) => (
@@ -116,7 +132,7 @@ const Tasklist: React.FC = () => {
                 ))}
               </div>
             </li>
-          </ul>
+          </ul> */}
         </div>
       </section>
     </section>

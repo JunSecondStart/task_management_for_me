@@ -30,7 +30,7 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
   });
 
   const [localTasklist, setlocalTasklist] = useState<localState>({
-    localstoragetasks: Array(1)
+    localstoragetasks: Array(0)
       .fill(null)
       .map(
         (_, i) =>
@@ -96,9 +96,16 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
         const getLocalstorage = localStorage.getItem("localStorageTask");
         if (getLocalstorage) {
           const jsonTasklist = JSON.parse(getLocalstorage);
-          console.log(jsonTasklist.map((title) => title.title));
-          setTitle("title2");
-          setContent("content2");
+          console.log(jsonTasklist);
+          for (let j of jsonTasklist) {
+            console.log(j.id);
+            console.log(j.title);
+            console.log(j.content);
+            console.log(j.check);
+            setTitle(j.title);
+            setContent(j.content);
+          }
+          // console.log(jsonTasklist.map((title) => {title.title}));
         }
         const copyTask: localstoragetask = {
           id,
@@ -106,6 +113,41 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
           content: content,
           check: false,
         };
+
+        return {
+          ...prev,
+          localstoragetasks: [...prev.localstoragetasks, copyTask],
+        };
+      });
+    },
+    saveClear: () => {
+      setlocalTasklist((prev) => {
+        let id = 1;
+        const latestTask = prev.localstoragetasks.at(-1);
+        if (latestTask) {
+          id = latestTask.id + 1;
+        }
+        const getLocalstorage = localStorage.getItem("localStorageTask");
+        if (getLocalstorage) {
+          const jsonTasklist = JSON.parse(getLocalstorage);
+          console.log(jsonTasklist);
+          for (let j of jsonTasklist) {
+            console.log(j.id);
+            console.log(j.title);
+            console.log(j.content);
+            console.log(j.check);
+            setTitle(j.title);
+            setContent(j.content);
+          }
+          // console.log(jsonTasklist.map((title) => {title.title}));
+        }
+        const copyTask: localstoragetask = {
+          id,
+          title: title,
+          content: content,
+          check: false,
+        };
+
         return {
           ...prev,
           localstoragetasks: [...prev.localstoragetasks, copyTask],
