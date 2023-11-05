@@ -3,7 +3,10 @@ import { useTask } from "../../../../context";
 import { storedtask } from "../../../../types";
 import TaskDetail from "../../common/TaskDetail";
 
-type Props = { storedtask: storedtask; idx: number };
+type Props = {
+  storedtask: storedtask;
+  idx: number;
+};
 const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
   /* ----- context ----- */
   // const [checkbox, setcheckbox] = useState(
@@ -71,11 +74,15 @@ const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
                 <p>id</p>
                 {idx}
               </div>
-              <div className={`text-center w-32 py-1 ${openModalStyle}`}>
+              <div
+                className={`text-center w-32 py-1 truncate ${openModalStyle}`}
+              >
                 <p>title</p>
                 {storedtask.title}
               </div>
-              <div className={`text-center w-32 py-1 ${openModalStyle}`}>
+              <div
+                className={`text-center w-32 py-1 truncate ${openModalStyle}`}
+              >
                 <p>content</p>
                 {storedtask.content}
               </div>

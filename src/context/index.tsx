@@ -80,7 +80,7 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
     },
     deleteAll: () => {
       setTask((prev) => ({ ...prev, storedtasks: [] }));
-      localStorage.clear();
+      window.location.reload();
     },
     taskWrite: () => {
       const localStorageTask = JSON.stringify(task.storedtasks);

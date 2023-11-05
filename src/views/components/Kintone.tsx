@@ -10,7 +10,12 @@ const Kintone: React.FC = () => {
   return (
     <>
       <section className="text-center">
-        <button onClick={() => toggle()}>切り替え用ボタン</button>
+        <button
+          className="bg-pink-200 text-white py-4 px-8"
+          onClick={() => toggle()}
+        >
+          Change
+        </button>
       </section>
       <section>{mode === "Tasklist" ? <Tasklist /> : <Save />}</section>
       <section>

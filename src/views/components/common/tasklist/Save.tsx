@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTask } from "../../../../context";
-import Taskstore from "./Taskstore";
+import SavedTask from "./SavedTask";
 import { localState, localstoragetask, taskState } from "../../../../types";
 
 const Save: React.FC = () => {
@@ -26,13 +26,15 @@ const Save: React.FC = () => {
           detailCheck: k.detailCheck,
         } as localstoragetask);
       }
-      localStorage.clear();
     }
   }
 
-  function localCheck() {
-    Task.taskWrite();
+  function localLoading() {
     Read();
+  }
+
+  function localDelete() {
+    localStorage.clear();
   }
 
   return (
@@ -43,13 +45,28 @@ const Save: React.FC = () => {
         </h4>
       </div>
       <section className="flex flex-row">
-        <div className="basis-1/3"></div>
+        <div className="basis-1/3 mx-40">
+          <button
+            className="bg-yellow-200 text-white text-2xl w-36 h-20"
+            type="button"
+            onClick={() => localLoading()}
+          >
+            Load
+          </button>
+          <button
+            className="bg-pink-400 text-white text-2xl w-36 h-20"
+            type="button"
+            onClick={() => localDelete()}
+          >
+            Cache Clear
+          </button>
+        </div>
         <div className="basis-1/3">
           <ul className="text-green-400 text-2xl font-bold">
             <li className="px-20">
               <div>
-                {Task.localstoragetasks.map((storedtask, i) => (
-                  <Taskstore storedtask={storedtask} idx={i} />
+                {Task.localstoragetasks.map((localstoragetask, i) => (
+                  <SavedTask localstoragetask={localstoragetask} idx={i} />
                 ))}
               </div>
             </li>

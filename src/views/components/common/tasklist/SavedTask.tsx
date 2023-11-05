@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useTask } from "../../../../context";
-import { storedtask } from "../../../../types";
+import { localstoragetask } from "../../../../types";
 import TaskDetail from "../TaskDetail";
 
-type Props = { storedtask: storedtask; idx: number };
-const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
+type Props = { localstoragetask: localstoragetask; idx: number };
+const Taskstore: React.FC<Props> = ({ localstoragetask, idx }) => {
   /* ----- context ----- */
   // const [checkbox, setcheckbox] = useState(
   //   (storedtask.check = storedtask.check)
@@ -12,7 +12,7 @@ const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
   const Task = useTask();
   const [style, setstyle] = useState("");
   const [detailCheck, setdetailCheck] = useState(
-    (storedtask.detailCheck = storedtask.detailCheck)
+    (localstoragetask.detailCheck = localstoragetask.detailCheck)
   );
   const [detailStyle, setdetailStyle] = useState("");
   const [openModalStyle, setopenModalStyle] = useState("");
@@ -25,10 +25,10 @@ const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
   // console.log(Task.openModal);
 
   useEffect(() => {
-    storedtask.check === true
+    localstoragetask.check === true
       ? setstyle("bg-yellow-200 text-red-400")
       : setstyle("text-cyan-400");
-  }, [storedtask.check]);
+  }, [localstoragetask.check]);
 
   useEffect(() => {
     if (detailCheck === false) {
@@ -49,8 +49,8 @@ const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
 
   const drop = () => {
     detailCheck === false
-      ? setdetailCheck((storedtask.detailCheck = true))
-      : setdetailCheck((storedtask.detailCheck = false));
+      ? setdetailCheck((localstoragetask.detailCheck = true))
+      : setdetailCheck((localstoragetask.detailCheck = false));
     // console.log(detailCheck);
   };
 
@@ -71,17 +71,21 @@ const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
                 <p>id</p>
                 {idx}
               </div>
-              <div className={`text-center w-32 py-1 ${openModalStyle}`}>
+              <div
+                className={`text-center w-32 py-1 truncate ${openModalStyle}`}
+              >
                 <p>title</p>
-                {storedtask.title}
+                {localstoragetask.title}
               </div>
-              <div className={`text-center w-32 py-1 ${openModalStyle}`}>
+              <div
+                className={`text-center w-32 py-1 truncate ${openModalStyle}`}
+              >
                 <p>content</p>
-                {storedtask.content}
+                {localstoragetask.content}
               </div>
               <div className="text-center w-24 py-6">
                 <span className="w-full">
-                  {storedtask.check ? "complete" : "no clear"}
+                  {localstoragetask.check ? "complete" : "no clear"}
                 </span>
               </div>
 
@@ -103,7 +107,7 @@ const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
                   >
                     {detailCheck ? "see detail" : "stop seeing it"}
                   </button> */}
-                <TaskDetail storedtask={storedtask} idx={idx} />
+                <TaskDetail storedtask={localstoragetask} idx={idx} />
               </div>
             </div>
           </li>

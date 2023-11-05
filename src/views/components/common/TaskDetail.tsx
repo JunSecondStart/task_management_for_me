@@ -29,49 +29,39 @@ const TaskDetail: React.FC<Props> = ({ storedtask, idx }) => {
           props.setOpenModal(false);
         }}
       >
-        <Modal.Header>{}</Modal.Header>
-        <Modal.Body>
-          <div className="flex flex-row space-x-10">
-            <div className="text-center py-2 w-16">
-              <p>id</p>
+        <Modal.Header>
+          {}
+          <div className="flex">
+            <div className="text-center w-32 py-2 mx-8">
+              <span className="mr-8">id</span>
               {idx}
             </div>
-            <div className="text-center py-2 w-16">
-              <p>title</p>
+            <div className="text-center w-full py-2 mx-8">
+              <span className="mr-8">title</span>
               {storedtask.title}
             </div>
-            <div className="text-center py-2 w-16">
+          </div>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="flex flex-row space-x-10">
+            <div className="text-center py-2 w-full">
               <p>content</p>
               {storedtask.content}
-            </div>
-            <div className="text-center w-24 py-6">
-              <span className="w-full">
-                {storedtask.check ? "complete" : "no clear"}
-              </span>
-            </div>
-            <div className="text-center w-16  py-6">
-              <button className="w-full" type="button" onClick={() => check()}>
-                {storedtask.check ? "on" : "off"}
-              </button>
             </div>
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            onClick={() => {
-              props.setOpenModal(false);
-            }}
-          >
-            I accept
-          </Button>
-          <Button
-            color="gray"
-            onClick={() => {
-              props.setOpenModal(false);
-            }}
-          >
-            Decline
-          </Button>
+          <div className="text-center w-1/2">
+            <span className="w-full">Could you do this?</span>
+          </div>
+          <div className="text-center w-1/2  py-6">
+            <span className="w-full">
+              {storedtask.check ? "complete" : "no clear"}
+            </span>
+            <button className="w-full" type="button" onClick={() => check()}>
+              {storedtask.check ? "on" : "off"}
+            </button>
+          </div>
         </Modal.Footer>
       </Modal>
     </>
