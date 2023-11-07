@@ -1,37 +1,9 @@
-import { useEffect, useState } from "react";
 import { useTask } from "../../../../context";
 import SavedTask from "./SavedTask";
-import { localState, localstoragetask, taskState } from "../../../../types";
 
 const Save: React.FC = () => {
   /* ----- context ----- */
   const Task = useTask();
-  const [editTitle, seteditTitle] = useState("");
-  const [editContent, seteditContent] = useState("");
-
-  function create() {
-    Task.taskCreate(editTitle, editContent);
-  }
-
-  function Read() {
-    const getLocalstorage = localStorage.getItem("localStorageTask");
-    if (getLocalstorage) {
-      const jsonparselist = JSON.parse(getLocalstorage);
-      for (let k of jsonparselist) {
-        Task.localstoragetasks.push({
-          id: k.id,
-          content: k.content,
-          title: k.title,
-          check: k.check,
-          detailCheck: k.detailCheck,
-        } as localstoragetask);
-      }
-    }
-  }
-
-  function localLoading() {
-    Read();
-  }
 
   function localDelete() {
     localStorage.clear();
@@ -44,12 +16,12 @@ const Save: React.FC = () => {
           Save
         </h4>
       </div>
-      <section className="flex flex-row">
-        <div className="basis-1/3 mx-40">
+      <section className="flex flex-row w-40">
+        <div className="basis-1/3 mx-40 h-96">
           <button
-            className="bg-yellow-200 text-white text-2xl w-36 h-20"
+            className="bg-yellow-200 text-white text-2xl w-36 h-20 mb-8"
             type="button"
-            onClick={() => localLoading()}
+            onClick={() => Task.loadLocal()}
           >
             Load
           </button>

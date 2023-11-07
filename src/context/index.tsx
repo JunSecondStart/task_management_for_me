@@ -113,44 +113,31 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
           content: content,
           check: false,
         };
-
         return {
           ...prev,
           localstoragetasks: [...prev.localstoragetasks, copyTask],
         };
       });
     },
-    saveClear: () => {
+    loadLocal: () => {
       setlocalTasklist((prev) => {
-        let id = 1;
-        const latestTask = prev.localstoragetasks.at(-1);
-        if (latestTask) {
-          id = latestTask.id + 1;
-        }
         const getLocalstorage = localStorage.getItem("localStorageTask");
         if (getLocalstorage) {
-          const jsonTasklist = JSON.parse(getLocalstorage);
-          console.log(jsonTasklist);
-          for (let j of jsonTasklist) {
-            console.log(j.id);
-            console.log(j.title);
-            console.log(j.content);
-            console.log(j.check);
-            setTitle(j.title);
-            setContent(j.content);
+          const jsonparselist = JSON.parse(getLocalstorage);
+          for (let k of jsonparselist) {
+            prev.localstoragetasks.push({
+              id: k.id,
+              content: k.content,
+              title: k.title,
+              check: k.check,
+              detailCheck: k.detailCheck,
+            } as localstoragetask);
           }
-          // console.log(jsonTasklist.map((title) => {title.title}));
-        }
-        const copyTask: localstoragetask = {
-          id,
-          title: title,
-          content: content,
-          check: false,
         };
 
         return {
           ...prev,
-          localstoragetasks: [...prev.localstoragetasks, copyTask],
+          localstoragetasks: [...prev.localstoragetasks],
         };
       });
     },

@@ -6,9 +6,6 @@ import TaskDetail from "../TaskDetail";
 type Props = { localstoragetask: localstoragetask; idx: number };
 const Taskstore: React.FC<Props> = ({ localstoragetask, idx }) => {
   /* ----- context ----- */
-  // const [checkbox, setcheckbox] = useState(
-  //   (storedtask.check = storedtask.check)
-  // );
   const Task = useTask();
   const [style, setstyle] = useState("");
   const [detailCheck, setdetailCheck] = useState(
@@ -17,12 +14,7 @@ const Taskstore: React.FC<Props> = ({ localstoragetask, idx }) => {
   const [detailStyle, setdetailStyle] = useState("");
   const [openModalStyle, setopenModalStyle] = useState("");
 
-  // const check = () => {
-  //   checkbox === false
-  //     ? setcheckbox((storedtask.check = true))
-  //     : setcheckbox((storedtask.check = false));
-  // };
-  // console.log(Task.openModal);
+
 
   useEffect(() => {
     localstoragetask.check === true
@@ -40,19 +32,6 @@ const Taskstore: React.FC<Props> = ({ localstoragetask, idx }) => {
     }
   }, [detailCheck]);
 
-  // Task.openModal? console.log(Task.openModal):(
-  //   // useEffect(()=>{
-  //     console.log(Task.openModal)
-
-  //   // },[])
-  // );
-
-  const drop = () => {
-    detailCheck === false
-      ? setdetailCheck((localstoragetask.detailCheck = true))
-      : setdetailCheck((localstoragetask.detailCheck = false));
-    // console.log(detailCheck);
-  };
 
   useEffect(() => {
     detailCheck === false
@@ -64,7 +43,6 @@ const Taskstore: React.FC<Props> = ({ localstoragetask, idx }) => {
     <section className={`bg-white m-5 ${style}`}>
       <div>
         <ul className="text-2xl font-bold">
-          {/* <li>{Task.title.map((title,i)=>(title+" "))}</li> */}
           <li className="h-20">
             <div className="flex flex-row space-x-10">
               <div className="text-center py-2 w-16">
@@ -88,25 +66,7 @@ const Taskstore: React.FC<Props> = ({ localstoragetask, idx }) => {
                   {localstoragetask.check ? "complete" : "no clear"}
                 </span>
               </div>
-
-              {/* <div className="text-center w-16  py-6">
-                  <button
-                    className="w-full"
-                    type="button"
-                    onClick={() => check()}
-                  >
-                    {storedtask.check ? "on" : "off"}
-                  </button>
-                </div> */}
-
               <div className="text-center w-32 p-2">
-                {/* <button
-                    className={`w-full ${detailStyle}`}
-                    type="button"
-                    onClick={() => detail()}
-                  >
-                    {detailCheck ? "see detail" : "stop seeing it"}
-                  </button> */}
                 <TaskDetail storedtask={localstoragetask} idx={idx} />
               </div>
             </div>

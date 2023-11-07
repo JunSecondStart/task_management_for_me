@@ -8,34 +8,9 @@ const Tasklist: React.FC = () => {
   const Task = useTask();
   const [editTitle, seteditTitle] = useState("");
   const [editContent, seteditContent] = useState("");
-  const [localTasklistArray, setlocalTasklistArray] = useState<localState>({
-    localstoragetasks: Array(1)
-      .fill(null)
-      .map(
-        (_, i) =>
-          ({
-            id: 1,
-            content: "content",
-            title: "title",
-            check: false,
-            detailCheck: true,
-          } as localstoragetask)
-      ),
-  });
-  const [title, setTitle] = useState<string>("");
-  const [content, setContent] = useState<string>("");
 
   function create() {
     Task.taskCreate(editTitle, editContent);
-  }
-
-  function readLocal() {
-    const getLocalstorage = localStorage.getItem("localStorageTask");
-    if (getLocalstorage) {
-      const jsonTasklist = JSON.parse(getLocalstorage);
-      console.log(jsonTasklist);
-      return jsonTasklist;
-    }
   }
 
   function Read() {
@@ -69,6 +44,30 @@ const Tasklist: React.FC = () => {
       <section className="flex flex-row">
         <div className="basis-1/3">
           <ul className="text-2xl h-1/6">
+          <li className="text-center">
+              <button
+                className="bg-cyan-400 text-2xl text-white w-32 h-20"
+                type="button"
+                onClick={() => create()}
+              >
+                create
+              </button>
+              <button
+                className="bg-red-400 text-white text-2xl w-32 h-20"
+                type="button"
+                onClick={() => Task.deleteAll()}
+              >
+                delete
+              </button>
+              <button
+                className="bg-green-300 text-white text-2xl w-32 h-20"
+                type="button"
+                onClick={() => localCheck()}
+              >
+                Save
+              </button>
+            </li>
+
             <li className="mx-20">
               <div className="mx-10 text-center">title</div>
               <textarea
@@ -87,52 +86,18 @@ const Tasklist: React.FC = () => {
                 onChange={(e) => seteditContent(e.target.value)}
               />
             </li>
-            <li className="text-center">
-              <button
-                className="bg-cyan-400 text-2xl w-36 h-20"
-                type="button"
-                onClick={() => create()}
-              >
-                create
-              </button>
-              <button
-                className="bg-red-400 text-2xl w-36 h-20"
-                type="button"
-                onClick={() => Task.deleteAll()}
-              >
-                delete
-              </button>
-              <button
-                className="bg-green-300 text-2xl w-36 h-20"
-                type="button"
-                onClick={() => localCheck()}
-              >
-                Save
-              </button>
-            </li>
           </ul>
         </div>
         <div className="basis-2/3">
           <ul className="text-cyan-400 text-2xl font-bold">
-            {/* <li>{Task.title.map((title,i)=>(title+" "))}</li> */}
             <li className="px-20">
               <div>
                 {Task.storedtasks.map((storedtask, i) => (
                   <Taskstore storedtask={storedtask} idx={i} />
                 ))}
               </div>
-              {/* <div className="basis=7/12">{Task.taskContent.content.map((taskContent,i)=>(taskContent+" "))}</div>  */}
             </li>
           </ul>
-          {/* <ul className="text-cyan-400 text-2xl font-bold">
-            <li className="px-20">
-              <div>
-                {Task.localstoragetasks.map((storedtask, i) => (
-                  <Taskstore storedtask={storedtask} idx={i} />
-                ))}
-              </div>
-            </li>
-          </ul> */}
         </div>
       </section>
     </section>
