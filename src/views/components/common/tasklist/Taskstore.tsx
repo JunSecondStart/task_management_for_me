@@ -9,9 +9,6 @@ type Props = {
 };
 const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
   /* ----- context ----- */
-  // const [checkbox, setcheckbox] = useState(
-  //   (storedtask.check = storedtask.check)
-  // );
   const Task = useTask();
   const [style, setstyle] = useState("");
   const [detailCheck, setdetailCheck] = useState(
@@ -19,13 +16,6 @@ const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
   );
   const [detailStyle, setdetailStyle] = useState("");
   const [openModalStyle, setopenModalStyle] = useState("");
-
-  // const check = () => {
-  //   checkbox === false
-  //     ? setcheckbox((storedtask.check = true))
-  //     : setcheckbox((storedtask.check = false));
-  // };
-  // console.log(Task.openModal);
 
   useEffect(() => {
     storedtask.check === true
@@ -43,20 +33,6 @@ const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
     }
   }, [detailCheck]);
 
-  // Task.openModal? console.log(Task.openModal):(
-  //   // useEffect(()=>{
-  //     console.log(Task.openModal)
-
-  //   // },[])
-  // );
-
-  const drop = () => {
-    detailCheck === false
-      ? setdetailCheck((storedtask.detailCheck = true))
-      : setdetailCheck((storedtask.detailCheck = false));
-    // console.log(detailCheck);
-  };
-
   useEffect(() => {
     detailCheck === false
       ? setdetailStyle("!bg-white !text-red-400  px-2 pb-1")
@@ -67,7 +43,6 @@ const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
     <section className={`bg-white m-5 ${style}`}>
       <div>
         <ul className="text-2xl font-bold">
-          {/* <li>{Task.title.map((title,i)=>(title+" "))}</li> */}
           <li className="h-20">
             <div className="flex flex-row space-x-10">
               <div className="text-center py-2 w-16 md:w-full">
@@ -91,25 +66,7 @@ const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
                   {storedtask.check ? "complete" : "no clear"}
                 </span>
               </div>
-
-              {/* <div className="text-center w-16  py-6">
-                  <button
-                    className="w-full"
-                    type="button"
-                    onClick={() => check()}
-                  >
-                    {storedtask.check ? "on" : "off"}
-                  </button>
-                </div> */}
-
               <div className="text-center w-32">
-                {/* <button
-                    className={`w-full ${detailStyle}`}
-                    type="button"
-                    onClick={() => detail()}
-                  >
-                    {detailCheck ? "see detail" : "stop seeing it"}
-                  </button> */}
                 <TaskDetail storedtask={storedtask} idx={idx} />
               </div>
             </div>

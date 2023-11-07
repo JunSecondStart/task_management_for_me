@@ -31,6 +31,4 @@ export type TaskFunc = {
   taskWrite: () => void;
   taskRead: () => void;
   loadLocal: () => void;
-  // contextReload: () => void;
-  // openCells: (idx: number, status: CellStatusType) => void;
 };
