@@ -70,23 +70,23 @@ const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
           {/* <li>{Task.title.map((title,i)=>(title+" "))}</li> */}
           <li className="h-20">
             <div className="flex flex-row space-x-10">
-              <div className="text-center py-2 w-16">
+              <div className="text-center py-2 w-16 md:w-full">
                 <p>id</p>
                 {idx}
               </div>
               <div
-                className={`text-center w-32 py-1 truncate ${openModalStyle}`}
+                className={`text-center w-32 py-1 md:w-full truncate ${openModalStyle}`}
               >
                 <p>title</p>
                 {storedtask.title}
               </div>
               <div
-                className={`text-center w-32 py-1 truncate ${openModalStyle}`}
+                className={`text-center w-32 py-1 md:w-full truncate ${openModalStyle}`}
               >
                 <p>content</p>
                 {storedtask.content}
               </div>
-              <div className="text-center w-24 py-6">
+              <div className="text-center w-24 py-6 md:w-full">
                 <span className="w-full">
                   {storedtask.check ? "complete" : "no clear"}
                 </span>
@@ -102,7 +102,7 @@ const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
                   </button>
                 </div> */}
 
-              <div className="text-center w-32 p-2">
+              <div className="text-center w-32">
                 {/* <button
                     className={`w-full ${detailStyle}`}
                     type="button"

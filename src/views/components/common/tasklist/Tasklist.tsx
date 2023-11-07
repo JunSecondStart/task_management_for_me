@@ -35,39 +35,15 @@ const Tasklist: React.FC = () => {
   }
 
   return (
-    <section className="bg-cyan-50">
+    <section className="static bg-cyan-50 h-screen">
       <div>
-        <h4 className="text-cyan-300 bg-cyan-50 text-center py-10 text-2xl font-bold">
+        <h4 className="text-cyan-300 bg-cyan-50 text-center pt-5 pb-5 text-2xl font-bold">
           Tasklist
         </h4>
       </div>
       <section className="flex flex-row">
         <div className="basis-1/3">
-          <ul className="text-2xl h-1/6">
-          <li className="text-center">
-              <button
-                className="bg-cyan-400 text-2xl text-white w-32 h-20"
-                type="button"
-                onClick={() => create()}
-              >
-                create
-              </button>
-              <button
-                className="bg-red-400 text-white text-2xl w-32 h-20"
-                type="button"
-                onClick={() => Task.deleteAll()}
-              >
-                delete
-              </button>
-              <button
-                className="bg-green-300 text-white text-2xl w-32 h-20"
-                type="button"
-                onClick={() => localCheck()}
-              >
-                Save
-              </button>
-            </li>
-
+          <ul className="absolute top-5/24 left-1/8 text-2xl h-1/6 w-3/12">
             <li className="mx-20">
               <div className="mx-10 text-center">title</div>
               <textarea
@@ -87,9 +63,38 @@ const Tasklist: React.FC = () => {
               />
             </li>
           </ul>
+          <ul className="absolute top-5/24 left-1/4 m-4">
+            <li className="text-center">
+              <button
+                className="bg-cyan-400 text-2xl text-white w-32 h-20"
+                type="button"
+                onClick={() => create()}
+              >
+                create
+              </button>
+            </li>
+            <li>
+              <button
+                className="bg-green-300 text-white text-2xl w-32 h-20 my-24"
+                type="button"
+                onClick={() => localCheck()}
+              >
+                Save
+              </button>
+            </li>
+            <li>
+              <button
+                className="bottom-0 bg-red-400 text-white text-2xl w-32 h-20"
+                type="button"
+                onClick={() => Task.deleteAll()}
+              >
+                delete
+              </button>
+            </li>
+          </ul>
         </div>
         <div className="basis-2/3">
-          <ul className="text-cyan-400 text-2xl font-bold">
+          <ul className="static text-cyan-400 text-2xl font-bold">
             <li className="px-20">
               <div>
                 {Task.storedtasks.map((storedtask, i) => (
@@ -100,6 +105,7 @@ const Tasklist: React.FC = () => {
           </ul>
         </div>
       </section>
+      <section className="flex"></section>
     </section>
   );
 };

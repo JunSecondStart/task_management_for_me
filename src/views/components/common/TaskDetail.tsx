@@ -17,6 +17,7 @@ const TaskDetail: React.FC<Props> = ({ storedtask, idx }) => {
   return (
     <>
       <Button
+        className="m-4 w-28 h-12"
         onClick={() => {
           props.setOpenModal(true);
         }}
