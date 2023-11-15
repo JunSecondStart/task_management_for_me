@@ -24,6 +24,10 @@ export type localstoragetask = {
   detailCheck?: boolean;
 };
 
+export type selectTopic = {
+  selectTopic: "Coding" | "Kintone" | "Plans" | "Servermanagement" | "Slack" | "Tips";
+};
+
 export type TaskFunc = {
   taskCreate: (title: string, content: string) => void;
   taskComplete: (id: number, isComplete: boolean) => void;
@@ -31,4 +35,5 @@ export type TaskFunc = {
   taskWrite: () => void;
   taskRead: () => void;
   loadLocal: () => void;
+  selectPage: () => void;
 };

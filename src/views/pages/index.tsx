@@ -1,12 +1,12 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Plans from "../components/Plans";
+import Plans from "../components/unique/Plans/Plans";
 import Home from "../components/Home";
-import Kintone from "../components/Kintone";
-import Slack from "../components/Slack";
-import Servermanagement from "../components/Servermanagement";
-import Tips from "../components/Tips";
-import Coding from "../components/Coding";
+import Kintone from "../components/unique/Kintone/Kintone";
+import Slack from "../components/unique/Slack/Slack";
+import Servermanagement from "../components/unique/Servermanagement/Servermanagement";
+import Tips from "../components/unique/Tips/Tips";
+import Coding from "../components/unique/Coding/Coding";
 
 const Pages: React.FC = () => {
   return (

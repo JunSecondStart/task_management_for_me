@@ -6,6 +6,7 @@ import {
   TaskFunc,
   taskState,
   localState,
+  selectTopic
 } from "../types";
 import _ from "lodash";
 
@@ -47,6 +48,9 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
 
+  const [topic, setTopic] = useState<selectTopic>({
+    selectTopic : "Kintone",
+  } );
   // const [openModal, setopenModal] = useState<boolean>(false);
 
   // function contextReload(){
@@ -134,10 +138,17 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
             } as localstoragetask);
           }
         };
-
         return {
           ...prev,
           localstoragetasks: [...prev.localstoragetasks],
+        };
+      });
+    },
+    selectPage: ()=>{
+      setTopic((prev)=>{
+        prev.selectTopic = "Kintone";
+        return {
+          ...prev, selectTopic : "Servermanagement",
         };
       });
     },
@@ -146,7 +157,7 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
   // filter
 
   return (
-    <TaskContext.Provider value={{ ...task, ...localTasklist, ...taskFunc }}>
+    <TaskContext.Provider value={{ ...task, ...localTasklist, ...topic, ...taskFunc }}>
       {children}
     </TaskContext.Provider>
   );

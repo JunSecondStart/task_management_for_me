@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useTask } from "../../../../context";
-import { localstoragetask } from "../../../../types";
-import TaskDetail from "../TaskDetail";
+import { useTask } from "../../../../../context";
+import { localstoragetask } from "../../../../../types";
+import TaskDetail from "./TaskDetail";
 
 type Props = { localstoragetask: localstoragetask; idx: number };
 const Taskstore: React.FC<Props> = ({ localstoragetask, idx }) => {

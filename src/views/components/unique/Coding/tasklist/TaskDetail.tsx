@@ -1,7 +1,7 @@
 import { Button, Modal } from "flowbite-react";
 import { useState, useEffect } from "react";
-import { useTask } from "../../../context";
-import { storedtask } from "../../../types";
+import { useTask } from "../../../../../context";
+import { storedtask } from "../../../../../types";
 
 type Props = { storedtask: storedtask; idx: number };
 const TaskDetail: React.FC<Props> = ({ storedtask, idx }) => {

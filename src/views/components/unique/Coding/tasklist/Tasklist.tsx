@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useTask } from "../../../../context";
+import { useTask } from "../../../../../context";
 import Taskstore from "./Taskstore";
-import { localState, localstoragetask, taskState } from "../../../../types";
+import { localState, localstoragetask, taskState } from "../../../../../types";
 
 const Tasklist: React.FC = () => {
   /* ----- context ----- */
