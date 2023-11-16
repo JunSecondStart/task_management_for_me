@@ -9,15 +9,18 @@ const App:React.FC = () => {
   const Task = useTask();
   const [pageTitle, setPageTitle] = useState<selectTopic>({ selectTopic: ""});
 
-  function movePage(){
-    if(pageTitle.selectTopic!==""){
-    const url = window.location;
-    window.location.replace({url}+"/"+pageTitle);
-    }
-  }
+  // function movePage(){
+  //   switch(pageTitle){
+  //     case "Coding": "Coding";
+  //   }
+  //   if(pageTitle.selectTopic!==""){
+  //   const url = window.location;
+  //   window.location.replace({url}+"/"+pageTitle);
+  //   }
+  // }
 
   useEffect(()=>{
-    movePage();
+    // movePage();
   },[pageTitle])
 
   return (
