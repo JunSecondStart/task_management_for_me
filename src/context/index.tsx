@@ -49,7 +49,7 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
   const [content, setContent] = useState<string>("");
 
   const [topic, setTopic] = useState<selectTopic>({
-    selectTopic : "Kintone",
+    selectTopic : "",
   } );
   // const [openModal, setopenModal] = useState<boolean>(false);
 
@@ -146,7 +146,11 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
     },
     selectPage: ()=>{
       setTopic((prev)=>{
-        prev.selectTopic = "Kintone";
+        console.log(topic);
+        const url = window.location;
+        if(prev.selectTopic!==""){
+        window.location.replace({url}+"/"+prev.selectTopic);
+        }
         return {
           ...prev, selectTopic : "Servermanagement",
         };

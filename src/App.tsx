@@ -7,10 +7,17 @@ import { useState,useEffect } from "react";
 
 const App:React.FC = () => {
   const Task = useTask();
-  const [pageTitle, setPageTitle] = useState<selectTopic>({ selectTopic: "Coding"});
+  const [pageTitle, setPageTitle] = useState<selectTopic>({ selectTopic: ""});
+
+  function movePage(){
+    if(pageTitle.selectTopic!==""){
+    const url = window.location;
+    window.location.replace({url}+"/"+pageTitle);
+    }
+  }
 
   useEffect(()=>{
-    console.log(pageTitle);
+    movePage();
   },[pageTitle])
 
   return (

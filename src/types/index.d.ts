@@ -25,7 +25,7 @@ export type localstoragetask = {
 };
 
 export type selectTopic = {
-  selectTopic: "Coding" | "Kintone" | "Plans" | "Servermanagement" | "Slack" | "Tips";
+  selectTopic: "" | "Coding" | "Kintone" | "Plans" | "Servermanagement" | "Slack" | "Tips";
 };
 
 export type TaskFunc = {
