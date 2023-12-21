@@ -9,15 +9,16 @@ import Tips from "../components/unique/Tips/Tips";
 import Coding from "../components/unique/Coding/Coding";
 
 const Pages: React.FC = () => {
+  const url ="http://junjunworks.hippy.jp/task_management_for_me/build/";
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/coding" element={<Coding />} />
-      <Route path="/plans" element={<Plans />} />
-      <Route path="/kintone" element={<Kintone />} />
-      <Route path="/slack" element={<Slack />} />
-      <Route path="/servermanagement" element={<Servermanagement />} />
-      <Route path="/tips" element={<Tips />} />
+      <Route path={`${url}/`} element={<Home />} />
+      <Route path={`${url}/coding`} element={<Coding />} />
+      <Route path={`${url}/plans`} element={<Plans />} />
+      <Route path={`${url}/kintone`} element={<Kintone />} />
+      <Route path={`${url}/slack`} element={<Slack />} />
+      <Route path={`${url}/servermanagement`} element={<Servermanagement />} />
+      <Route path={`${url}/tips`} element={<Tips />} />
     </Routes>
   );
 };
