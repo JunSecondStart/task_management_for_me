@@ -9,16 +9,16 @@ import Tips from "../components/unique/Tips/Tips";
 import Coding from "../components/unique/Coding/Coding";
 
 const Pages: React.FC = () => {
-  const url ="";
+  const url ="http://junjunworks.hippy.jp/task_management_for_me/build/";
   return (
     <Routes>
-      <Route path="http://junjunworks.hippy.jp/task_management_for_me/build/" element={<Home />} />
-      <Route path="http://junjunworks.hippy.jp/task_management_for_me/build/coding" element={<Coding />} />
-      <Route path="http://junjunworks.hippy.jp/task_management_for_me/build/plans" element={<Plans />} />
-      <Route path="http://junjunworks.hippy.jp/task_management_for_me/build/kintone" element={<Kintone />} />
-      <Route path="http://junjunworks.hippy.jp/task_management_for_me/build/slack" element={<Slack />} />
-      <Route path="http://junjunworks.hippy.jp/task_management_for_me/build/servermanagement" element={<Servermanagement />} />
-      <Route path="http://junjunworks.hippy.jp/task_management_for_me/build/tips" element={<Tips />} />
+      <Route path={`${url}/`} element={<Home />} />
+      <Route path={`${url}/coding`} element={<Coding />} />
+      <Route path={`${url}/plans`} element={<Plans />} />
+      <Route path={`${url}/kintone`} element={<Kintone />} />
+      <Route path={`${url}/slack`} element={<Slack />} />
+      <Route path={`${url}/servermanagement`} element={<Servermanagement />} />
+      <Route path={`${url}/tips`} element={<Tips />} />
     </Routes>
   );
 };
