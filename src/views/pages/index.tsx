@@ -9,7 +9,7 @@ import Tips from "../components/unique/Tips/Tips";
 import Coding from "../components/unique/Coding/Coding";
 
 const Pages: React.FC = () => {
-  const url ="http://junjunworks.hippy.jp/task_management_for_me/build/";
+  const url ="http://junjunworks.hippy.jp/task_management_for_me/build";
   return (
     <Routes>
       <Route path={`${url}/`} element={<Home />} />
