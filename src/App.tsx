@@ -31,12 +31,12 @@ const App:React.FC = () => {
         </div>
         <section className="py-10 bg-cyan-50">
           <ul className="flex flex-row">
-            <li className="basis-1/6 text-3xl text-center text-cyan-300"><Link to="/coding" onClick={()=>setPageTitle({selectTopic: "Coding"})}>Coding</Link></li>
-            <li className="basis-1/6 text-3xl text-center text-cyan-300"><Link to="/plans" onClick={()=>setPageTitle({selectTopic: "Plans"})}>Plans</Link></li>
+            <li className="basis-1/6 text-3xl text-center text-green-300"><Link to="/coding" onClick={()=>setPageTitle({selectTopic: "Coding"})}>Coding</Link></li>
+            <li className="basis-1/6 text-3xl text-center text-red-300"><Link to="/plans" onClick={()=>setPageTitle({selectTopic: "Plans"})}>Plans</Link></li>
             <li className="basis-1/6 text-3xl text-center text-cyan-300"><Link to="/kintone" onClick={()=>setPageTitle({selectTopic: "Kintone"})}>Kintone</Link></li>
-            <li className="basis-1/6 text-3xl text-center text-cyan-300"><Link to="/slack" onClick={()=>setPageTitle({selectTopic: "Slack"})}>Slack</Link></li>
-            <li className="basis-1/6 text-3xl text-center text-cyan-300"><Link to="/servermanagement" onClick={()=>setPageTitle({selectTopic: "Servermanagement"})}>Servermanagement</Link></li>
-            <li className="basis-1/6 text-3xl text-center text-cyan-300"><Link to="/tips" onClick={()=>setPageTitle({selectTopic: "Tips"})}>Tips</Link></li>
+            <li className="basis-1/6 text-3xl text-center text-pink-300"><Link to="/slack" onClick={()=>setPageTitle({selectTopic: "Slack"})}>Slack</Link></li>
+            <li className="basis-1/6 text-3xl text-center text-violet-300"><Link to="/servermanagement" onClick={()=>setPageTitle({selectTopic: "Servermanagement"})}>Servermanagement</Link></li>
+            <li className="basis-1/6 text-3xl text-center text-yellow-300"><Link to="/tips" onClick={()=>setPageTitle({selectTopic: "Tips"})}>Tips</Link></li>
           </ul>
         </section>
         <section>

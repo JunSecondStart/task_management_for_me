@@ -35,9 +35,9 @@ const Tasklist: React.FC = () => {
   }
 
   return (
-    <section className="static bg-green-50 h-screen">
+    <section className="static bg-red-50 h-screen">
       <div>
-        <h4 className="text-green-300 bg-green-50 text-center pt-5 pb-5 text-2xl font-bold">
+        <h4 className="text-red-300 bg-red-50 text-center pt-5 pb-5 text-2xl font-bold">
           Tasklist
         </h4>
       </div>
