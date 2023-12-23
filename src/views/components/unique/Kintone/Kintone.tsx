@@ -13,7 +13,7 @@ const Kintone: React.FC = () => {
       <section>{mode === "Tasklist" ? <Tasklist /> : <Save />}</section>
       <section className="text-center">
         <button
-          className="bg-pink-200 text-white py-4 px-8"
+          className="bg-sky-200 text-white py-4 px-8"
           onClick={() => toggle()}
         >
           Change

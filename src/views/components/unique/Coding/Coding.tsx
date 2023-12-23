@@ -19,7 +19,7 @@ const Coding: React.FC = () => {
         </button>
       </section>
       <section>
-        <h4 className="text-sky-300 bg-sky-100 text-center py-10 text-2xl font-bold">
+        <h4 className="text-green-300 bg-green-100 text-center py-10 text-2xl font-bold">
           Coding
         </h4>
       </section>
