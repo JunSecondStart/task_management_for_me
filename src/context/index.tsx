@@ -1,12 +1,18 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import {
   localstoragetask,
   storedtask,
   taskContext,
   TaskFunc,
+  TaskFuncCoding,
   taskState,
   localState,
-  selectTopic
+  selectTopic,
+  storedtask_coding,
+  storedtask_plans,
+  storedtask_servermanagement,
+  storedtask_slack,
+  storedtask_tips,
 } from "../types";
 import _ from "lodash";
 
@@ -16,7 +22,19 @@ export const useTask = () => useContext(TaskContext);
 type Props = { children: React.ReactNode };
 export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
   const [task, setTask] = useState<taskState>({
-    storedtasks: Array(1)
+    storedtasks_coding: Array(1)
+      .fill(null)
+      .map(
+        (_, i) =>
+          ({
+            id: 1,
+            content: "content",
+            title: "title",
+            check: false,
+            detailCheck: true,
+          } as storedtask_coding)
+      ),
+      storedtasks: Array(1)
       .fill(null)
       .map(
         (_, i) =>
@@ -27,6 +45,54 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
             check: false,
             detailCheck: true,
           } as storedtask)
+      ),
+      storedtasks_plans: Array(1)
+      .fill(null)
+      .map(
+        (_, i) =>
+          ({
+            id: 1,
+            content: "content",
+            title: "title",
+            check: false,
+            detailCheck: true,
+          } as storedtask_plans)
+      ),
+      storedtasks_servermanagement: Array(1)
+      .fill(null)
+      .map(
+        (_, i) =>
+          ({
+            id: 1,
+            content: "content",
+            title: "title",
+            check: false,
+            detailCheck: true,
+          } as storedtask_servermanagement)
+      ),
+      storedtasks_slack: Array(1)
+      .fill(null)
+      .map(
+        (_, i) =>
+          ({
+            id: 1,
+            content: "content",
+            title: "title",
+            check: false,
+            detailCheck: true,
+          } as storedtask_slack)
+      ),
+      storedtasks_tips: Array(1)
+      .fill(null)
+      .map(
+        (_, i) =>
+          ({
+            id: 1,
+            content: "content",
+            title: "title",
+            check: false,
+            detailCheck: true,
+          } as storedtask_tips)
       ),
   });
 
@@ -51,11 +117,123 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
   const [topic, setTopic] = useState<selectTopic>({
     selectTopic : "",
   } );
+
+
+  useEffect(()=>{
+    console.log("useEffect");
+  },[]);
   // const [openModal, setopenModal] = useState<boolean>(false);
 
   // function contextReload(){
   //       setTask();
   // };
+
+  ///////////////////////Coding//////////////////////////////////////////////
+
+  const taskFuncCoding: TaskFuncCoding = {
+    taskCreateCoding: (title, content) => {
+      setTask((prev) => {
+        let id = 1;
+        const latestTask = prev.storedtasks_coding.at(-1);
+        if (latestTask) {
+          id = latestTask.id + 1;
+        }
+        const newTask: storedtask_coding = {
+          id,
+          title,
+          content,
+          check: false,
+        };
+        return { ...prev, storedtasks_coding: [...prev.storedtasks_coding, newTask] };
+      });
+    },
+    taskCompleteCoding: (id, isComplete) => {
+      setTask((prev) => {
+        const updated = prev.storedtasks_coding.map((task) =>
+          task.id === id ? { ...task, check: isComplete } : task
+        );
+        return { ...prev, storedtasks_coding: updated };
+      });
+    },
+    deleteAllCoding: () => {
+      setTask((prev) => ({ ...prev, storedtasks_coding: [] }));
+      window.location.reload();
+    },
+    taskWriteCoding: () => {
+      const localStorageTask = JSON.stringify(task.storedtasks_coding);
+      localStorage.setItem("localStorageTask", localStorageTask);
+    },
+    taskReadCoding: () => {
+      setlocalTasklist((prev) => {
+        let id = 1;
+        const latestTask = prev.localstoragetasks.at(-1);
+        if (latestTask) {
+          id = latestTask.id + 1;
+        }
+        const getLocalstorage = localStorage.getItem("localStorageTask");
+        if (getLocalstorage) {
+          const jsonTasklist = JSON.parse(getLocalstorage);
+          console.log(jsonTasklist);
+          for (let j of jsonTasklist) {
+            console.log(j.id);
+            console.log(j.title);
+            console.log(j.content);
+            console.log(j.check);
+            setTitle(j.title);
+            setContent(j.content);
+          }
+          // console.log(jsonTasklist.map((title) => {title.title}));
+        }
+        const copyTask: localstoragetask = {
+          id,
+          title: title,
+          content: content,
+          check: false,
+        };
+        return {
+          ...prev,
+          localstoragetasks: [...prev.localstoragetasks, copyTask],
+        };
+      });
+    },
+    loadLocalCoding: () => {
+      setlocalTasklist((prev) => {
+        const getLocalstorage = localStorage.getItem("localStorageTask");
+        if (getLocalstorage) {
+          const jsonparselist = JSON.parse(getLocalstorage);
+          for (let k of jsonparselist) {
+            prev.localstoragetasks.push({
+              id: k.id,
+              content: k.content,
+              title: k.title,
+              check: k.check,
+              detailCheck: k.detailCheck,
+            } as localstoragetask);
+          }
+        };
+        return {
+          ...prev,
+          localstoragetasks: [...prev.localstoragetasks],
+        };
+      });
+    },
+    selectPageCoding: ()=>{
+      setTopic((prev)=>{
+        console.log(topic);
+        const url = window.location;
+        if(prev.selectTopic!==""){
+        window.location.replace({url}+"/"+prev.selectTopic);
+        }
+        return {
+          ...prev, selectTopic : "Servermanagement",
+        };
+      });
+    },
+  };
+
+  // filter
+
+    /////////////////////////////////////////////////////////////////////
 
   const taskFunc: TaskFunc = {
     taskCreate: (title, content) => {
@@ -158,10 +336,12 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
     },
   };
 
-  // filter
+
+
+
 
   return (
-    <TaskContext.Provider value={{ ...task, ...localTasklist, ...topic, ...taskFunc }}>
+    <TaskContext.Provider value={{ ...task, ...localTasklist, ...topic, ...taskFunc, ...taskFuncCoding }}>
       {children}
     </TaskContext.Provider>
   );

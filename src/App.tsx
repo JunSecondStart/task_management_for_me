@@ -26,17 +26,17 @@ const App:React.FC = () => {
   return (
     <>
       <TaskFieldContextProvider>
-        <div className="text-sky-300 bg-sky-100 text-center py-10 text-5xl font-bold">
+        <div className="text-sky-300 bg-sky-100 text-center py-5 text-2xl font-bold">
           Task Management For Me
         </div>
-        <section className="py-10 bg-cyan-50">
+        <section className="bg-gray-50">
           <ul className="flex flex-row">
-            <li className="basis-1/6 text-3xl text-center text-green-300"><Link to="/coding" onClick={()=>setPageTitle({selectTopic: "Coding"})}>Coding</Link></li>
-            <li className="basis-1/6 text-3xl text-center text-red-300"><Link to="/plans" onClick={()=>setPageTitle({selectTopic: "Plans"})}>Plans</Link></li>
-            <li className="basis-1/6 text-3xl text-center text-cyan-300"><Link to="/kintone" onClick={()=>setPageTitle({selectTopic: "Kintone"})}>Kintone</Link></li>
-            <li className="basis-1/6 text-3xl text-center text-pink-300"><Link to="/slack" onClick={()=>setPageTitle({selectTopic: "Slack"})}>Slack</Link></li>
-            <li className="basis-1/6 text-3xl text-center text-violet-300"><Link to="/servermanagement" onClick={()=>setPageTitle({selectTopic: "Servermanagement"})}>Servermanagement</Link></li>
-            <li className="basis-1/6 text-3xl text-center text-yellow-300"><Link to="/tips" onClick={()=>setPageTitle({selectTopic: "Tips"})}>Tips</Link></li>
+            <li className="basis-1/6 text-3xl text-center py-12 py-20 m-0 hover:bg-green-50 text-green-300"><Link to="/coding" onClick={()=>setPageTitle({selectTopic: "Coding"})}>Coding</Link></li>
+            <li className="basis-1/6 text-3xl text-center py-12 py-20 m-0 hover:bg-red-50 text-red-300"><Link to="/plans" onClick={()=>setPageTitle({selectTopic: "Plans"})}>Plans</Link></li>
+            <li className="basis-1/6 text-3xl text-center py-12 py-20 m-0 hover:bg-cyan-50 text-cyan-300"><Link to="/kintone" onClick={()=>setPageTitle({selectTopic: "Kintone"})}>Kintone</Link></li>
+            <li className="basis-1/6 text-3xl text-center py-12 py-20 m-0 hover:bg-pink-50 text-pink-300"><Link to="/slack" onClick={()=>setPageTitle({selectTopic: "Slack"})}>Slack</Link></li>
+            <li className="basis-1/6 text-3xl text-center py-12 py-20 m-0 hover:bg-violet-50 text-violet-300"><Link to="/servermanagement" onClick={()=>setPageTitle({selectTopic: "Servermanagement"})}>Servermanagement</Link></li>
+            <li className="basis-1/6 text-3xl text-center py-12 py-20 m-0 hover:bg-yellow-50 text-yellow-300"><Link to="/tips" onClick={()=>setPageTitle({selectTopic: "Tips"})}>Tips</Link></li>
           </ul>
         </section>
         <section>

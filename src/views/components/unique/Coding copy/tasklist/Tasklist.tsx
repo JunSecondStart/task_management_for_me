@@ -10,7 +10,7 @@ const Tasklist: React.FC = () => {
   const [editContent, seteditContent] = useState("");
 
   function create() {
-    Task.taskCreateCoding(editTitle, editContent);
+    Task.taskCreate(editTitle, editContent);
   }
 
   function Read() {
@@ -30,7 +30,7 @@ const Tasklist: React.FC = () => {
   }
 
   function localCheck() {
-    Task.taskWriteCoding();
+    Task.taskWrite();
     Read();
   }
 
@@ -86,7 +86,7 @@ const Tasklist: React.FC = () => {
               <button
                 className="bottom-0 bg-red-400 text-white text-2xl w-32 h-20"
                 type="button"
-                onClick={() => Task.deleteAllCoding()}
+                onClick={() => Task.deleteAll()}
               >
                 delete
               </button>
@@ -97,8 +97,8 @@ const Tasklist: React.FC = () => {
           <ul className="static text-cyan-400 text-2xl font-bold">
             <li className="px-20">
               <div>
-                {Task.storedtasks_coding.map((storedtask_coding, i) => (
-                  <Taskstore storedtask_coding={storedtask_coding} idx={i} />
+                {Task.storedtasks.map((storedtask, i) => (
+                  <Taskstore storedtask={storedtask} idx={i} />
                 ))}
               </div>
             </li>

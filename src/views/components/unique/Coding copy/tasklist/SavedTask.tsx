@@ -67,7 +67,7 @@ const Taskstore: React.FC<Props> = ({ localstoragetask, idx }) => {
                 </span>
               </div>
               <div className="text-center w-32 p-2">
-                <TaskDetail storedtask_coding={localstoragetask} idx={idx} />
+                <TaskDetail storedtask={localstoragetask} idx={idx} />
               </div>
             </div>
           </li>
