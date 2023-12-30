@@ -147,10 +147,10 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
         return { ...prev, storedtasks_coding: [...prev.storedtasks_coding, newTask] };
       });
     },
-    taskCompleteCoding: (id, isComplete) => {
+    taskCompleteCoding: (id, isCompleteCoding) => {
       setTask((prev) => {
         const updated = prev.storedtasks_coding.map((task) =>
-          task.id === id ? { ...task, check: isComplete } : task
+          task.id === id ? { ...task, check: isCompleteCoding } : task
         );
         return { ...prev, storedtasks_coding: updated };
       });

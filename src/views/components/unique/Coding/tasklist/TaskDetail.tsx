@@ -11,7 +11,7 @@ const TaskDetail: React.FC<Props> = ({ storedtask_coding, idx }) => {
   const [style, setstyle] = useState("");
 
   const check = () => {
-    Task.taskComplete(storedtask_coding.id, !storedtask_coding.check);
+    Task.taskCompleteCoding(storedtask_coding.id, !storedtask_coding.check);
   };
 
   return (

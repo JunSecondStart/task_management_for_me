@@ -85,7 +85,7 @@ export type TaskFunc = {
 
 export type TaskFuncCoding = {
   taskCreateCoding: (title: string, content: string) => void;
-  taskCompleteCoding: (id: number, isComplete: boolean) => void;
+  taskCompleteCoding: (id: number, isCompleteCoding: boolean) => void;
   deleteAllCoding: () => void;
   taskWriteCoding: () => void;
   taskReadCoding: () => void;
