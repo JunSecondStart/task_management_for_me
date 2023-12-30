@@ -37,7 +37,7 @@ const Tasklist: React.FC = () => {
   return (
     <section className="static bg-cyan-50 h-screen">
       <div>
-        <h4 className="text-cyan-300 bg-cyan-50 text-center pt-5 pb-5 text-2xl font-bold">
+        <h4 className="text-cyan-300 bg-cyan-50 text-center pt-4 text-xl font-bold">
           Tasklist
         </h4>
       </div>
