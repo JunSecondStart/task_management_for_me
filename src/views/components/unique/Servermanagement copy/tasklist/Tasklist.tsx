@@ -10,7 +10,7 @@ const Tasklist: React.FC = () => {
   const [editContent, seteditContent] = useState("");
 
   function create() {
-    Task.taskCreatePlans(editTitle, editContent);
+    Task.taskCreate(editTitle, editContent);
   }
 
   function Read() {
@@ -30,14 +30,14 @@ const Tasklist: React.FC = () => {
   }
 
   function localCheck() {
-    Task.taskWritePlans();
+    Task.taskWrite();
     Read();
   }
 
   return (
-    <section className="static bg-red-50 h-screen">
+    <section className="static bg-violet-50 h-screen">
       <div>
-        <h4 className="text-red-300 bg-red-50 text-center pt-4 text-xl font-bold">
+        <h4 className="text-violet-300 bg-violet-50 text-center pt-4 text-xl font-bold">
           Tasklist
         </h4>
       </div>
@@ -86,7 +86,7 @@ const Tasklist: React.FC = () => {
               <button
                 className="bottom-0 bg-red-400 text-white text-2xl w-32 h-20"
                 type="button"
-                onClick={() => Task.deleteAllPlans()}
+                onClick={() => Task.deleteAll()}
               >
                 delete
               </button>
@@ -97,8 +97,8 @@ const Tasklist: React.FC = () => {
           <ul className="static text-cyan-400 text-2xl font-bold">
             <li className="px-20">
               <div>
-                {Task.storedtasks_plans.map((storedtask_plans, i) => (
-                  <Taskstore storedtask_plans={storedtask_plans} idx={i} />
+                {Task.storedtasks.map((storedtask, i) => (
+                  <Taskstore storedtask={storedtask} idx={i} />
                 ))}
               </div>
             </li>

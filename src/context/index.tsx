@@ -5,6 +5,8 @@ import {
   taskContext,
   TaskFunc,
   TaskFuncCoding,
+  TaskFuncPlans,
+  TaskFuncServermanagement,
   taskState,
   localState,
   selectTopic,
@@ -233,7 +235,7 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
 
   // filter
 
-    /////////////////////////////////////////////////////////////////////
+    ///////////////////////Kintone//////////////////////////////////////////////
 
   const taskFunc: TaskFunc = {
     taskCreate: (title, content) => {
@@ -336,12 +338,217 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
     },
   };
 
+    /////////////////////////////Plans////////////////////////////////////////
 
+    const taskFuncPlans: TaskFuncPlans = {
+      taskCreatePlans: (title, content) => {
+        setTask((prev) => {
+          let id = 1;
+          const latestTask = prev.storedtasks_plans.at(-1);
+          if (latestTask) {
+            id = latestTask.id + 1;
+          }
+          const newTask: storedtask_plans = {
+            id,
+            title,
+            content,
+            check: false,
+          };
+          return { ...prev, storedtasks_plans: [...prev.storedtasks_plans, newTask] };
+        });
+      },
+      taskCompletePlans: (id, isCompletePlans) => {
+        setTask((prev) => {
+          const updated = prev.storedtasks_plans.map((task) =>
+            task.id === id ? { ...task, check: isCompletePlans} : task
+          );
+          return { ...prev, storedtasks_plans: updated };
+        });
+      },
+      deleteAllPlans: () => {
+        setTask((prev) => ({ ...prev, storedtasks_plans: [] }));
+        window.location.reload();
+      },
+      taskWritePlans: () => {
+        const localStorageTask = JSON.stringify(task.storedtasks_plans);
+        localStorage.setItem("localStorageTask", localStorageTask);
+      },
+      taskReadPlans: () => {
+        setlocalTasklist((prev) => {
+          let id = 1;
+          const latestTask = prev.localstoragetasks.at(-1);
+          if (latestTask) {
+            id = latestTask.id + 1;
+          }
+          const getLocalstorage = localStorage.getItem("localStorageTask");
+          if (getLocalstorage) {
+            const jsonTasklist = JSON.parse(getLocalstorage);
+            console.log(jsonTasklist);
+            for (let j of jsonTasklist) {
+              console.log(j.id);
+              console.log(j.title);
+              console.log(j.content);
+              console.log(j.check);
+              setTitle(j.title);
+              setContent(j.content);
+            }
+            // console.log(jsonTasklist.map((title) => {title.title}));
+          }
+          const copyTask: localstoragetask = {
+            id,
+            title: title,
+            content: content,
+            check: false,
+          };
+          return {
+            ...prev,
+            localstoragetasks: [...prev.localstoragetasks, copyTask],
+          };
+        });
+      },
+      loadLocalPlans: () => {
+        setlocalTasklist((prev) => {
+          const getLocalstorage = localStorage.getItem("localStorageTask");
+          if (getLocalstorage) {
+            const jsonparselist = JSON.parse(getLocalstorage);
+            for (let k of jsonparselist) {
+              prev.localstoragetasks.push({
+                id: k.id,
+                content: k.content,
+                title: k.title,
+                check: k.check,
+                detailCheck: k.detailCheck,
+              } as localstoragetask);
+            }
+          };
+          return {
+            ...prev,
+            localstoragetasks: [...prev.localstoragetasks],
+          };
+        });
+      },
+      selectPagePlans: ()=>{
+        setTopic((prev)=>{
+          console.log(topic);
+          const url = window.location;
+          if(prev.selectTopic!==""){
+          window.location.replace({url}+"/"+prev.selectTopic);
+          }
+          return {
+            ...prev, selectTopic : "Servermanagement",
+          };
+        });
+      },
+    };
+  
+        /////////////////////////////Servermanagement////////////////////////////////////////
 
-
-
+        const taskFuncServermanagement: TaskFuncServermanagement = {
+          taskCreateServermanagement: (title, content) => {
+            setTask((prev) => {
+              let id = 1;
+              const latestTask = prev.storedtasks_servermanagement.at(-1);
+              if (latestTask) {
+                id = latestTask.id + 1;
+              }
+              const newTask: storedtask_servermanagement = {
+                id,
+                title,
+                content,
+                check: false,
+              };
+              return { ...prev, storedtasks_servermanagement: [...prev.storedtasks_servermanagement, newTask] };
+            });
+          },
+          taskCompleteServermanagement: (id, isCompleteServermanagement) => {
+            setTask((prev) => {
+              const updated = prev.storedtasks_servermanagement.map((task) =>
+                task.id === id ? { ...task, check: isCompleteServermanagement} : task
+              );
+              return { ...prev, storedtasks_servermanagement: updated };
+            });
+          },
+          deleteAllServermanagement: () => {
+            setTask((prev) => ({ ...prev, storedtasks_servermanagement: [] }));
+            window.location.reload();
+          },
+          taskWriteServermanagement: () => {
+            const localStorageTask = JSON.stringify(task.storedtasks_servermanagement);
+            localStorage.setItem("localStorageTask", localStorageTask);
+          },
+          taskReadServermanagement: () => {
+            setlocalTasklist((prev) => {
+              let id = 1;
+              const latestTask = prev.localstoragetasks.at(-1);
+              if (latestTask) {
+                id = latestTask.id + 1;
+              }
+              const getLocalstorage = localStorage.getItem("localStorageTask");
+              if (getLocalstorage) {
+                const jsonTasklist = JSON.parse(getLocalstorage);
+                console.log(jsonTasklist);
+                for (let j of jsonTasklist) {
+                  console.log(j.id);
+                  console.log(j.title);
+                  console.log(j.content);
+                  console.log(j.check);
+                  setTitle(j.title);
+                  setContent(j.content);
+                }
+                // console.log(jsonTasklist.map((title) => {title.title}));
+              }
+              const copyTask: localstoragetask = {
+                id,
+                title: title,
+                content: content,
+                check: false,
+              };
+              return {
+                ...prev,
+                localstoragetasks: [...prev.localstoragetasks, copyTask],
+              };
+            });
+          },
+          loadLocalServermanagement: () => {
+            setlocalTasklist((prev) => {
+              const getLocalstorage = localStorage.getItem("localStorageTask");
+              if (getLocalstorage) {
+                const jsonparselist = JSON.parse(getLocalstorage);
+                for (let k of jsonparselist) {
+                  prev.localstoragetasks.push({
+                    id: k.id,
+                    content: k.content,
+                    title: k.title,
+                    check: k.check,
+                    detailCheck: k.detailCheck,
+                  } as localstoragetask);
+                }
+              };
+              return {
+                ...prev,
+                localstoragetasks: [...prev.localstoragetasks],
+              };
+            });
+          },
+          selectPageServermanagement: ()=>{
+            setTopic((prev)=>{
+              console.log(topic);
+              const url = window.location;
+              if(prev.selectTopic!==""){
+              window.location.replace({url}+"/"+prev.selectTopic);
+              }
+              return {
+                ...prev, selectTopic : "Servermanagement",
+              };
+            });
+          },
+        };
+      
+    
+        /////////////////////////////////////////////////////////////////////
+  
   return (
-    <TaskContext.Provider value={{ ...task, ...localTasklist, ...topic, ...taskFunc, ...taskFuncCoding }}>
+    <TaskContext.Provider value={{ ...task, ...localTasklist, ...topic, ...taskFunc, ...taskFuncCoding, ...taskFuncPlans, ...taskFuncServermanagement }}>
       {children}
     </TaskContext.Provider>
   );

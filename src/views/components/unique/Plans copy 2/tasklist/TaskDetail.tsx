@@ -1,17 +1,17 @@
 import { Button, Modal } from "flowbite-react";
 import { useState, useEffect } from "react";
 import { useTask } from "../../../../../context";
-import { storedtask_plans } from "../../../../../types";
+import { storedtask } from "../../../../../types";
 
-type Props = { storedtask_plans: storedtask_plans; idx: number };
-const TaskDetail: React.FC<Props> = ({ storedtask_plans, idx }) => {
+type Props = { storedtask: storedtask; idx: number };
+const TaskDetail: React.FC<Props> = ({ storedtask, idx }) => {
   const Task = useTask();
   const [openModal, setOpenModal] = useState<boolean>(false);
   const props = { openModal, setOpenModal };
   const [style, setstyle] = useState("");
 
   const check = () => {
-    Task.taskComplete(storedtask_plans.id, !storedtask_plans.check);
+    Task.taskComplete(storedtask.id, !storedtask.check);
   };
 
   return (
@@ -39,7 +39,7 @@ const TaskDetail: React.FC<Props> = ({ storedtask_plans, idx }) => {
             </div>
             <div className="text-center w-full py-2 mx-8">
               <span className="mr-8">title</span>
-              {storedtask_plans.title}
+              {storedtask.title}
             </div>
           </div>
         </Modal.Header>
@@ -47,7 +47,7 @@ const TaskDetail: React.FC<Props> = ({ storedtask_plans, idx }) => {
           <div className="flex flex-row space-x-10">
             <div className="text-center py-2 w-full">
               <p>content</p>
-              {storedtask_plans.content}
+              {storedtask.content}
             </div>
           </div>
         </Modal.Body>
@@ -57,10 +57,10 @@ const TaskDetail: React.FC<Props> = ({ storedtask_plans, idx }) => {
           </div>
           <div className="text-center w-1/2  py-6">
             <span className="w-full">
-              {storedtask_plans.check ? "complete" : "no clear"}
+              {storedtask.check ? "complete" : "no clear"}
             </span>
             <button className="w-full" type="button" onClick={() => check()}>
-              {storedtask_plans.check ? "on" : "off"}
+              {storedtask.check ? "on" : "off"}
             </button>
           </div>
         </Modal.Footer>

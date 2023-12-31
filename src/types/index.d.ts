@@ -1,4 +1,4 @@
-export type taskContext = taskState & localState & TaskFunc & TaskFuncCoding;
+export type taskContext = taskState & localState & TaskFunc & TaskFuncCoding & TaskFuncPlans & TaskFuncServermanagement;
 
 export type taskState = {
   storedtasks: storedtask[];
@@ -93,3 +93,22 @@ export type TaskFuncCoding = {
   selectPageCoding: () => void;
 };
 
+export type TaskFuncPlans = {
+  taskCreatePlans: (title: string, content: string) => void;
+  taskCompletePlans: (id: number, isCompletePlans: boolean) => void;
+  deleteAllPlans: () => void;
+  taskWritePlans: () => void;
+  taskReadPlans: () => void;
+  loadLocalPlans: () => void;
+  selectPagePlans: () => void;
+};
+
+export type TaskFuncServermanagement = {
+  taskCreateServermanagement: (title: string, content: string) => void;
+  taskCompleteServermanagement: (id: number, isCompleteServermanagement: boolean) => void;
+  deleteAllServermanagement: () => void;
+  taskWriteServermanagement: () => void;
+  taskReadServermanagement: () => void;
+  loadLocalServermanagement: () => void;
+  selectPageServermanagement: () => void;
+};

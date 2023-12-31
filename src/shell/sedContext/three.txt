@@ -1,0 +1,6 @@
+  return (
+    <TaskContext.Provider value={{ ...task, ...localTasklist, ...topic, ...taskFunc, ...taskFuncCoding, ...taskFuncPlans }}>
+      {children}
+    </TaskContext.Provider>
+  );
+};

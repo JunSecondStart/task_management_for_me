@@ -1,0 +1,9 @@
+export type TaskFuncPlans = {
+  taskCreatePlans: (title: string, content: string) => void;
+  taskCompletePlans: (id: number, isCompletePlans: boolean) => void;
+  deleteAllPlans: () => void;
+  taskWritePlans: () => void;
+  taskReadPlans: () => void;
+  loadLocalPlans: () => void;
+  selectPagePlans: () => void;
+};

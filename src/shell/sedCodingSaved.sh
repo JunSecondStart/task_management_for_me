@@ -1,3 +1,3 @@
 #!/bin/bash
 
-cat /Users/fujitajunya/Desktop/dev/reactProject/task_management_for_me/src/views/components/unique/Coding/tasklist/SavedTask.tsx | sed 's/storedtask/storedtask_coding/g' > SavedTask.tsx
+cat /Users/fujitajunya/Desktop/dev/reactProject/task_management_for_me/src/views/components/unique/Plans/tasklist/SavedTask.tsx | sed 's/storedtask/storedtask_plans/g' > ./sed/SavedTask.tsx

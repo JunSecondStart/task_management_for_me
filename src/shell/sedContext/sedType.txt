@@ -1,0 +1,9 @@
+export type TaskFuncServermanagement = {
+  taskCreateServermanagement: (title: string, content: string) => void;
+  taskCompleteServermanagement: (id: number, isCompleteServermanagement: boolean) => void;
+  deleteAllServermanagement: () => void;
+  taskWriteServermanagement: () => void;
+  taskReadServermanagement: () => void;
+  loadLocalServermanagement: () => void;
+  selectPageServermanagement: () => void;
+};

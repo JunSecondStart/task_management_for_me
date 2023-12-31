@@ -1,0 +1,26 @@
+＜unique/(componentName) ディレクトリ内を編集用＞
+1 changeName.sh　を　s/Plans/Servermanagement/g　から　s/変更前/変更後/g　のように編集。
+例　s/Plans/Slack/g
+2 ./changeName
+3 ./sed/all.sh
+(.カレントディレクトリはshellディレクトリ)
+4 ./sed/overwrite内に4つのファイル生成
+5 ドラッグ&ドロップで
+/Users/fujitajunya/Desktop/dev/reactProject/task_management_for_me/src/views/components/unique/Slack
+にコピペし、全て上書き
+6 sの位置微修正
+
+<sedContext context内を編集用>
+1 two.txtに/////Plans//////以下が記述されていることを確認。
+2 sedTailName.sh内を編集('s/変更前/変更後/g')
+'s/Plans/Servermanagement/g'=>'s/Plans/Slack/g'
+'s/plans/servermanagement/g'=>'s/plans/slack/g'
+3 ./sedTailName
+
+<sedType type/index.d.tsxを編集用>
+1 type/index.d.tsの最下部の関数定義あたりを人まとまり分、sedType.txtにコピペ
+2 sedType.sh内を編集('s/変更前/変更後/g')
+'s/Plans/Servermanagement/g'=> 's/Plans/Slack/g'
+3 ./sedType
+
+上記、3つ全部うまくコピペ、編集できれば別変数で格納可能に。

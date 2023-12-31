@@ -1,27 +1,27 @@
 import { useEffect, useState } from "react";
 import { useTask } from "../../../../../context";
-import { storedtask_plans } from "../../../../../types";
+import { storedtask } from "../../../../../types";
 import TaskDetail from "./TaskDetail";
 
 type Props = {
-  storedtask_plans: storedtask_plans;
+  storedtask: storedtask;
   idx: number;
 };
-const Taskstore: React.FC<Props> = ({ storedtask_plans, idx }) => {
+const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
   /* ----- context ----- */
   const Task = useTask();
   const [style, setstyle] = useState("");
   const [detailCheck, setdetailCheck] = useState(
-    (storedtask_plans.detailCheck = storedtask_plans.detailCheck)
+    (storedtask.detailCheck = storedtask.detailCheck)
   );
   const [detailStyle, setdetailStyle] = useState("");
   const [openModalStyle, setopenModalStyle] = useState("");
 
   useEffect(() => {
-    storedtask_plans.check === true
+    storedtask.check === true
       ? setstyle("bg-yellow-200 text-red-400")
       : setstyle("text-cyan-400");
-  }, [storedtask_plans.check]);
+  }, [storedtask.check]);
 
   useEffect(() => {
     if (detailCheck === false) {
@@ -53,21 +53,21 @@ const Taskstore: React.FC<Props> = ({ storedtask_plans, idx }) => {
                 className={`text-center w-32 py-1 md:w-full truncate ${openModalStyle}`}
               >
                 <p>title</p>
-                {storedtask_plans.title}
+                {storedtask.title}
               </div>
               <div
                 className={`text-center w-32 py-1 md:w-full truncate ${openModalStyle}`}
               >
                 <p>content</p>
-                {storedtask_plans.content}
+                {storedtask.content}
               </div>
               <div className="text-center w-24 py-6 md:w-full">
                 <span className="w-full">
-                  {storedtask_plans.check ? "complete" : "no clear"}
+                  {storedtask.check ? "complete" : "no clear"}
                 </span>
               </div>
               <div className="text-center w-32">
-                <TaskDetail storedtask_plans={storedtask_plans} idx={idx} />
+                <TaskDetail storedtask={storedtask} idx={idx} />
               </div>
             </div>
           </li>
