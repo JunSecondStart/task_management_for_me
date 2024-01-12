@@ -6,7 +6,9 @@ import {
   TaskFunc,
   TaskFuncCoding,
   TaskFuncPlans,
+  TaskFuncSlack,
   TaskFuncServermanagement,
+  TaskFuncTips,
   taskState,
   localState,
   selectTopic,
@@ -440,6 +442,113 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
         });
       },
     };
+
+        /////////////////////////////Slacks////////////////////////////////////////
+
+    const taskFuncSlack: TaskFuncSlack = {
+      taskCreateSlack: (title, content) => {
+        setTask((prev) => {
+          let id = 1;
+          const latestTask = prev.storedtasks_slack.at(-1);
+          if (latestTask) {
+            id = latestTask.id + 1;
+          }
+          const newTask: storedtask_slack = {
+            id,
+            title,
+            content,
+            check: false,
+          };
+          return { ...prev, storedtasks_slack: [...prev.storedtasks_slack, newTask] };
+        });
+      },
+      taskCompleteSlack: (id, isCompleteSlacks) => {
+        setTask((prev) => {
+          const updated = prev.storedtasks_slack.map((task) =>
+            task.id === id ? { ...task, check: isCompleteSlacks} : task
+          );
+          return { ...prev, storedtasks_slacks: updated };
+        });
+      },
+      deleteAllSlack: () => {
+        setTask((prev) => ({ ...prev, storedtasks_slacks: [] }));
+        window.location.reload();
+      },
+      taskWriteSlack: () => {
+        const localStorageTask = JSON.stringify(task.storedtasks_slack);
+        localStorage.setItem("localStorageTask", localStorageTask);
+      },
+      taskReadSlack: () => {
+        setlocalTasklist((prev) => {
+          let id = 1;
+          const latestTask = prev.localstoragetasks.at(-1);
+          if (latestTask) {
+            id = latestTask.id + 1;
+          }
+          const getLocalstorage = localStorage.getItem("localStorageTask");
+          if (getLocalstorage) {
+            const jsonTasklist = JSON.parse(getLocalstorage);
+            console.log(jsonTasklist);
+            for (let j of jsonTasklist) {
+              console.log(j.id);
+              console.log(j.title);
+              console.log(j.content);
+              console.log(j.check);
+              setTitle(j.title);
+              setContent(j.content);
+            }
+            // console.log(jsonTasklist.map((title) => {title.title}));
+          }
+          const copyTask: localstoragetask = {
+            id,
+            title: title,
+            content: content,
+            check: false,
+          };
+          return {
+            ...prev,
+            localstoragetasks: [...prev.localstoragetasks, copyTask],
+          };
+        });
+      },
+      loadLocalSlack: () => {
+        setlocalTasklist((prev) => {
+          const getLocalstorage = localStorage.getItem("localStorageTask");
+          if (getLocalstorage) {
+            const jsonparselist = JSON.parse(getLocalstorage);
+            for (let k of jsonparselist) {
+              prev.localstoragetasks.push({
+                id: k.id,
+                content: k.content,
+                title: k.title,
+                check: k.check,
+                detailCheck: k.detailCheck,
+              } as localstoragetask);
+            }
+          };
+          return {
+            ...prev,
+            localstoragetasks: [...prev.localstoragetasks],
+          };
+        });
+      },
+      selectPageSlack: ()=>{
+        setTopic((prev)=>{
+          console.log(topic);
+          const url = window.location;
+          if(prev.selectTopic!==""){
+          window.location.replace({url}+"/"+prev.selectTopic);
+          }
+          return {
+            ...prev, selectTopic : "Slack",
+          };
+        });
+      },
+    };
+  
+
+    /////////////////////////////////////////////////////////////////////
+
   
         /////////////////////////////Servermanagement////////////////////////////////////////
 
@@ -546,9 +655,116 @@ export const TaskFieldContextProvider: React.FC<Props> = ({ children }) => {
       
     
         /////////////////////////////////////////////////////////////////////
+
+            /////////////////////////////Tips////////////////////////////////////////
+
+    const taskFuncTips: TaskFuncTips = {
+      taskCreateTips: (title, content) => {
+        setTask((prev) => {
+          let id = 1;
+          const latestTask = prev.storedtasks_tips.at(-1);
+          if (latestTask) {
+            id = latestTask.id + 1;
+          }
+          const newTask: storedtask_tips = {
+            id,
+            title,
+            content,
+            check: false,
+          };
+          return { ...prev, storedtasks_tips: [...prev.storedtasks_tips, newTask] };
+        });
+      },
+      taskCompleteTips: (id, isCompleteTips) => {
+        setTask((prev) => {
+          const updated = prev.storedtasks_tips.map((task) =>
+            task.id === id ? { ...task, check: isCompleteTips} : task
+          );
+          return { ...prev, storedtasks_tips: updated };
+        });
+      },
+      deleteAllTips: () => {
+        setTask((prev) => ({ ...prev, storedtasks_tips: [] }));
+        window.location.reload();
+      },
+      taskWriteTips: () => {
+        const localStorageTask = JSON.stringify(task.storedtasks_tips);
+        localStorage.setItem("localStorageTask", localStorageTask);
+      },
+      taskReadTips: () => {
+        setlocalTasklist((prev) => {
+          let id = 1;
+          const latestTask = prev.localstoragetasks.at(-1);
+          if (latestTask) {
+            id = latestTask.id + 1;
+          }
+          const getLocalstorage = localStorage.getItem("localStorageTask");
+          if (getLocalstorage) {
+            const jsonTasklist = JSON.parse(getLocalstorage);
+            console.log(jsonTasklist);
+            for (let j of jsonTasklist) {
+              console.log(j.id);
+              console.log(j.title);
+              console.log(j.content);
+              console.log(j.check);
+              setTitle(j.title);
+              setContent(j.content);
+            }
+            // console.log(jsonTasklist.map((title) => {title.title}));
+          }
+          const copyTask: localstoragetask = {
+            id,
+            title: title,
+            content: content,
+            check: false,
+          };
+          return {
+            ...prev,
+            localstoragetasks: [...prev.localstoragetasks, copyTask],
+          };
+        });
+      },
+      loadLocalTips: () => {
+        setlocalTasklist((prev) => {
+          const getLocalstorage = localStorage.getItem("localStorageTask");
+          if (getLocalstorage) {
+            const jsonparselist = JSON.parse(getLocalstorage);
+            for (let k of jsonparselist) {
+              prev.localstoragetasks.push({
+                id: k.id,
+                content: k.content,
+                title: k.title,
+                check: k.check,
+                detailCheck: k.detailCheck,
+              } as localstoragetask);
+            }
+          };
+          return {
+            ...prev,
+            localstoragetasks: [...prev.localstoragetasks],
+          };
+        });
+      },
+      selectPageTips: ()=>{
+        setTopic((prev)=>{
+          console.log(topic);
+          const url = window.location;
+          if(prev.selectTopic!==""){
+          window.location.replace({url}+"/"+prev.selectTopic);
+          }
+          return {
+            ...prev, selectTopic : "Servermanagement",
+          };
+        });
+      },
+    };
+  
+
+    /////////////////////////////////////////////////////////////////////
+
   
   return (
-    <TaskContext.Provider value={{ ...task, ...localTasklist, ...topic, ...taskFunc, ...taskFuncCoding, ...taskFuncPlans, ...taskFuncServermanagement }}>
+    <TaskContext.Provider value={{ ...task, ...localTasklist, ...topic, ...taskFunc, ...taskFuncCoding, ...taskFuncPlans, ...taskFuncSlack, ...taskFuncServermanagement, ...taskFuncTips }}>
       {children}
     </TaskContext.Provider>
   );

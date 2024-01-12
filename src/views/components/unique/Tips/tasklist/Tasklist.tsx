@@ -10,7 +10,7 @@ const Tasklist: React.FC = () => {
   const [editContent, seteditContent] = useState("");
 
   function create() {
-    Task.taskCreate(editTitle, editContent);
+    Task.taskCreateTips(editTitle, editContent);
   }
 
   function Read() {
@@ -30,7 +30,7 @@ const Tasklist: React.FC = () => {
   }
 
   function localCheck() {
-    Task.taskWrite();
+    Task.taskWriteTips();
     Read();
   }
 
@@ -86,7 +86,7 @@ const Tasklist: React.FC = () => {
               <button
                 className="bottom-0 bg-red-400 text-white text-2xl w-32 h-20"
                 type="button"
-                onClick={() => Task.deleteAll()}
+                onClick={() => Task.deleteAllTips()}
               >
                 delete
               </button>
@@ -97,8 +97,8 @@ const Tasklist: React.FC = () => {
           <ul className="static text-cyan-400 text-2xl font-bold">
             <li className="px-20">
               <div>
-                {Task.storedtasks.map((storedtask, i) => (
-                  <Taskstore storedtask={storedtask} idx={i} />
+                {Task.storedtasks_tips.map((storedtask_tips, i) => (
+                  <Taskstore storedtask_tips={storedtask_tips} idx={i} />
                 ))}
               </div>
             </li>

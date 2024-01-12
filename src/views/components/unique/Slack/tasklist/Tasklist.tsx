@@ -10,7 +10,7 @@ const Tasklist: React.FC = () => {
   const [editContent, seteditContent] = useState("");
 
   function create() {
-    Task.taskCreate(editTitle, editContent);
+    Task.taskCreateSlack(editTitle, editContent);
   }
 
   function Read() {
@@ -30,14 +30,14 @@ const Tasklist: React.FC = () => {
   }
 
   function localCheck() {
-    Task.taskWrite();
+    Task.taskWriteSlack();
     Read();
   }
 
   return (
-    <section className="static bg-pink-50 h-screen">
+    <section className="static bg-red-50 h-screen">
       <div>
-        <h4 className="text-pink-300 bg-pink-50 text-center pt-4 text-xl font-bold">
+        <h4 className="text-red-300 bg-red-50 text-center pt-4 text-xl font-bold">
           Tasklist
         </h4>
       </div>
@@ -86,7 +86,7 @@ const Tasklist: React.FC = () => {
               <button
                 className="bottom-0 bg-red-400 text-white text-2xl w-32 h-20"
                 type="button"
-                onClick={() => Task.deleteAll()}
+                onClick={() => Task.deleteAllSlack()}
               >
                 delete
               </button>
@@ -97,8 +97,8 @@ const Tasklist: React.FC = () => {
           <ul className="static text-cyan-400 text-2xl font-bold">
             <li className="px-20">
               <div>
-                {Task.storedtasks.map((storedtask, i) => (
-                  <Taskstore storedtask={storedtask} idx={i} />
+                {Task.storedtasks_slack.map((storedtask_slack, i) => (
+                  <Taskstore storedtask_slack={storedtask_slack} idx={i} />
                 ))}
               </div>
             </li>

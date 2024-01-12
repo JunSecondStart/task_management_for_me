@@ -1,4 +1,4 @@
-export type taskContext = taskState & localState & TaskFunc & TaskFuncCoding & TaskFuncPlans & TaskFuncServermanagement;
+export type taskContext = taskState & localState & TaskFunc & TaskFuncCoding & TaskFuncPlans & TaskFuncServermanagement & TaskFuncSlack & TaskFuncTips;
 
 export type taskState = {
   storedtasks: storedtask[];
@@ -103,6 +103,16 @@ export type TaskFuncPlans = {
   selectPagePlans: () => void;
 };
 
+export type TaskFuncSlack = {
+  taskCreateSlack: (title: string, content: string) => void;
+  taskCompleteSlack: (id: number, isCompleteSlacks: boolean) => void;
+  deleteAllSlack: () => void;
+  taskWriteSlack: () => void;
+  taskReadSlack: () => void;
+  loadLocalSlack: () => void;
+  selectPageSlack: () => void;
+};
+
 export type TaskFuncServermanagement = {
   taskCreateServermanagement: (title: string, content: string) => void;
   taskCompleteServermanagement: (id: number, isCompleteServermanagement: boolean) => void;
@@ -111,4 +121,14 @@ export type TaskFuncServermanagement = {
   taskReadServermanagement: () => void;
   loadLocalServermanagement: () => void;
   selectPageServermanagement: () => void;
+};
+
+export type TaskFuncTips = {
+  taskCreateTips: (title: string, content: string) => void;
+  taskCompleteTips: (id: number, isCompleteTips: boolean) => void;
+  deleteAllTips: () => void;
+  taskWriteTips: () => void;
+  taskReadTips: () => void;
+  loadLocalTips: () => void;
+  selectPageTips: () => void;
 };

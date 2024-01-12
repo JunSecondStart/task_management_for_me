@@ -1,17 +1,17 @@
 import { Button, Modal } from "flowbite-react";
 import { useState, useEffect } from "react";
 import { useTask } from "../../../../../context";
-import { storedtask } from "../../../../../types";
+import { storedtask_tips } from "../../../../../types";
 
-type Props = { storedtask: storedtask; idx: number };
-const TaskDetail: React.FC<Props> = ({ storedtask, idx }) => {
+type Props = { storedtask_tips: storedtask_tips; idx: number };
+const TaskDetail: React.FC<Props> = ({ storedtask_tips, idx }) => {
   const Task = useTask();
   const [openModal, setOpenModal] = useState<boolean>(false);
   const props = { openModal, setOpenModal };
   const [style, setstyle] = useState("");
 
   const check = () => {
-    Task.taskComplete(storedtask.id, !storedtask.check);
+    Task.taskComplete(storedtask_tips.id, !storedtask_tips.check);
   };
 
   return (
@@ -39,7 +39,7 @@ const TaskDetail: React.FC<Props> = ({ storedtask, idx }) => {
             </div>
             <div className="text-center w-full py-2 mx-8">
               <span className="mr-8">title</span>
-              {storedtask.title}
+              {storedtask_tips.title}
             </div>
           </div>
         </Modal.Header>
@@ -47,7 +47,7 @@ const TaskDetail: React.FC<Props> = ({ storedtask, idx }) => {
           <div className="flex flex-row space-x-10">
             <div className="text-center py-2 w-full">
               <p>content</p>
-              {storedtask.content}
+              {storedtask_tips.content}
             </div>
           </div>
         </Modal.Body>
@@ -57,10 +57,10 @@ const TaskDetail: React.FC<Props> = ({ storedtask, idx }) => {
           </div>
           <div className="text-center w-1/2  py-6">
             <span className="w-full">
-              {storedtask.check ? "complete" : "no clear"}
+              {storedtask_tips.check ? "complete" : "no clear"}
             </span>
             <button className="w-full" type="button" onClick={() => check()}>
-              {storedtask.check ? "on" : "off"}
+              {storedtask_tips.check ? "on" : "off"}
             </button>
           </div>
         </Modal.Footer>

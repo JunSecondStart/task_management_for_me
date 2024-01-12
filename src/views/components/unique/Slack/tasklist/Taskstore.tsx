@@ -1,27 +1,27 @@
 import { useEffect, useState } from "react";
 import { useTask } from "../../../../../context";
-import { storedtask } from "../../../../../types";
+import { storedtask_slack } from "../../../../../types";
 import TaskDetail from "./TaskDetail";
 
 type Props = {
-  storedtask: storedtask;
+  storedtask_slack: storedtask_slack;
   idx: number;
 };
-const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
+const Taskstore: React.FC<Props> = ({ storedtask_slack, idx }) => {
   /* ----- context ----- */
   const Task = useTask();
   const [style, setstyle] = useState("");
   const [detailCheck, setdetailCheck] = useState(
-    (storedtask.detailCheck = storedtask.detailCheck)
+    (storedtask_slack.detailCheck = storedtask_slack.detailCheck)
   );
   const [detailStyle, setdetailStyle] = useState("");
   const [openModalStyle, setopenModalStyle] = useState("");
 
   useEffect(() => {
-    storedtask.check === true
+    storedtask_slack.check === true
       ? setstyle("bg-yellow-200 text-red-400")
       : setstyle("text-cyan-400");
-  }, [storedtask.check]);
+  }, [storedtask_slack.check]);
 
   useEffect(() => {
     if (detailCheck === false) {
@@ -53,21 +53,21 @@ const Taskstore: React.FC<Props> = ({ storedtask, idx }) => {
                 className={`text-center w-32 py-1 md:w-full truncate ${openModalStyle}`}
               >
                 <p>title</p>
-                {storedtask.title}
+                {storedtask_slack.title}
               </div>
               <div
                 className={`text-center w-32 py-1 md:w-full truncate ${openModalStyle}`}
               >
                 <p>content</p>
-                {storedtask.content}
+                {storedtask_slack.content}
               </div>
               <div className="text-center w-24 py-6 md:w-full">
                 <span className="w-full">
-                  {storedtask.check ? "complete" : "no clear"}
+                  {storedtask_slack.check ? "complete" : "no clear"}
                 </span>
               </div>
               <div className="text-center w-32">
-                <TaskDetail storedtask={storedtask} idx={idx} />
+                <TaskDetail storedtask_slack={storedtask_slack} idx={idx} />
               </div>
             </div>
           </li>
