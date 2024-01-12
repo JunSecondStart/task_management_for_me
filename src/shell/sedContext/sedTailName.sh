@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cat two.txt | sed 's/Plans/Servermanagement/g' > ./sedOnlyLargeLetter.txt
+cat two.txt | sed 's/Plans/Tips/g' > ./sedOnlyLargeLetter.txt
 
-cat sedOnlyLargeLetter.txt | sed 's/plans/servermanagement/g' > ./sedSmallLetterToo.txt
+cat sedOnlyLargeLetter.txt | sed 's/plans/tips/g' > ./sedSmallLetterToo.txt

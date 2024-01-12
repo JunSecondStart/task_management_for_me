@@ -1,7 +1,7 @@
-    /////////////////////////////Servermanagement////////////////////////////////////////
+    /////////////////////////////Tips////////////////////////////////////////
 
-    const taskFuncServermanagement: TaskFuncServermanagement = {
-      taskCreateServermanagement: (title, content) => {
+    const taskFuncTips: TaskFuncTips = {
+      taskCreateTips: (title, content) => {
         setTask((prev) => {
           let id = 1;
           const latestTask = prev.storedtasks_plans.at(-1);
@@ -17,23 +17,23 @@
           return { ...prev, storedtasks_plans: [...prev.storedtasks_plans, newTask] };
         });
       },
-      taskCompleteServermanagement: (id, isCompleteServermanagement) => {
+      taskCompleteTips: (id, isCompleteTips) => {
         setTask((prev) => {
           const updated = prev.storedtasks_plans.map((task) =>
-            task.id === id ? { ...task, check: isCompleteServermanagement} : task
+            task.id === id ? { ...task, check: isCompleteTips} : task
           );
           return { ...prev, storedtasks_plans: updated };
         });
       },
-      deleteAllServermanagement: () => {
+      deleteAllTips: () => {
         setTask((prev) => ({ ...prev, storedtasks_plans: [] }));
         window.location.reload();
       },
-      taskWriteServermanagement: () => {
+      taskWriteTips: () => {
         const localStorageTask = JSON.stringify(task.storedtasks_plans);
         localStorage.setItem("localStorageTask", localStorageTask);
       },
-      taskReadServermanagement: () => {
+      taskReadTips: () => {
         setlocalTasklist((prev) => {
           let id = 1;
           const latestTask = prev.localstoragetasks.at(-1);
@@ -66,7 +66,7 @@
           };
         });
       },
-      loadLocalServermanagement: () => {
+      loadLocalTips: () => {
         setlocalTasklist((prev) => {
           const getLocalstorage = localStorage.getItem("localStorageTask");
           if (getLocalstorage) {
@@ -87,7 +87,7 @@
           };
         });
       },
-      selectPageServermanagement: ()=>{
+      selectPageTips: ()=>{
         setTopic((prev)=>{
           console.log(topic);
           const url = window.location;

@@ -1,39 +1,39 @@
-    /////////////////////////////Servermanagement////////////////////////////////////////
+    /////////////////////////////Tips////////////////////////////////////////
 
-    const taskFuncServermanagement: TaskFuncServermanagement = {
-      taskCreateServermanagement: (title, content) => {
+    const taskFuncTips: TaskFuncTips = {
+      taskCreateTips: (title, content) => {
         setTask((prev) => {
           let id = 1;
-          const latestTask = prev.storedtasks_servermanagement.at(-1);
+          const latestTask = prev.storedtasks_tips.at(-1);
           if (latestTask) {
             id = latestTask.id + 1;
           }
-          const newTask: storedtask_servermanagement = {
+          const newTask: storedtask_tips = {
             id,
             title,
             content,
             check: false,
           };
-          return { ...prev, storedtasks_servermanagement: [...prev.storedtasks_servermanagement, newTask] };
+          return { ...prev, storedtasks_tips: [...prev.storedtasks_tips, newTask] };
         });
       },
-      taskCompleteServermanagement: (id, isCompleteServermanagement) => {
+      taskCompleteTips: (id, isCompleteTips) => {
         setTask((prev) => {
-          const updated = prev.storedtasks_servermanagement.map((task) =>
-            task.id === id ? { ...task, check: isCompleteServermanagement} : task
+          const updated = prev.storedtasks_tips.map((task) =>
+            task.id === id ? { ...task, check: isCompleteTips} : task
           );
-          return { ...prev, storedtasks_servermanagement: updated };
+          return { ...prev, storedtasks_tips: updated };
         });
       },
-      deleteAllServermanagement: () => {
-        setTask((prev) => ({ ...prev, storedtasks_servermanagement: [] }));
+      deleteAllTips: () => {
+        setTask((prev) => ({ ...prev, storedtasks_tips: [] }));
         window.location.reload();
       },
-      taskWriteServermanagement: () => {
-        const localStorageTask = JSON.stringify(task.storedtasks_servermanagement);
+      taskWriteTips: () => {
+        const localStorageTask = JSON.stringify(task.storedtasks_tips);
         localStorage.setItem("localStorageTask", localStorageTask);
       },
-      taskReadServermanagement: () => {
+      taskReadTips: () => {
         setlocalTasklist((prev) => {
           let id = 1;
           const latestTask = prev.localstoragetasks.at(-1);
@@ -66,7 +66,7 @@
           };
         });
       },
-      loadLocalServermanagement: () => {
+      loadLocalTips: () => {
         setlocalTasklist((prev) => {
           const getLocalstorage = localStorage.getItem("localStorageTask");
           if (getLocalstorage) {
@@ -87,7 +87,7 @@
           };
         });
       },
-      selectPageServermanagement: ()=>{
+      selectPageTips: ()=>{
         setTopic((prev)=>{
           console.log(topic);
           const url = window.location;

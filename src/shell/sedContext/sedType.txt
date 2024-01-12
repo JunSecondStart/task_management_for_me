@@ -1,9 +1,9 @@
-export type TaskFuncServermanagement = {
-  taskCreateServermanagement: (title: string, content: string) => void;
-  taskCompleteServermanagement: (id: number, isCompleteServermanagement: boolean) => void;
-  deleteAllServermanagement: () => void;
-  taskWriteServermanagement: () => void;
-  taskReadServermanagement: () => void;
-  loadLocalServermanagement: () => void;
-  selectPageServermanagement: () => void;
+export type TaskFuncTips = {
+  taskCreateTips: (title: string, content: string) => void;
+  taskCompleteTips: (id: number, isCompleteTips: boolean) => void;
+  deleteAllTips: () => void;
+  taskWriteTips: () => void;
+  taskReadTips: () => void;
+  loadLocalTips: () => void;
+  selectPageTips: () => void;
 };
