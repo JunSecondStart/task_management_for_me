@@ -7,17 +7,33 @@ import Slack from "../components/unique/Slack/Slack";
 import Servermanagement from "../components/unique/Servermanagement/Servermanagement";
 import Tips from "../components/unique/Tips/Tips";
 import Coding from "../components/unique/Coding/Coding";
+import { CRUD } from "../components/crud/CRUD";
+import { items, item } from "../../types";
+import { ListItemSecondaryAction } from "@material-ui/core";
+import { AxiosGet } from "../components/crud/AxiosGet";
 
 const Pages: React.FC = () => {
+  const items1 = [
+    {
+      id: 1,
+      param1: 100,
+      param2: 200,
+      param3: 300,
+      name: "phoo",
+    },
+  ];
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/coding" element={<Coding />} />
       <Route path="/plans" element={<Plans />} />
+      <Route path="/coding" element={<Coding />} />
       <Route path="/kintone" element={<Kintone />} />
       <Route path="/slack" element={<Slack />} />
       <Route path="/servermanagement" element={<Servermanagement />} />
       <Route path="/tips" element={<Tips />} />
+      <Route path="/api" element={<CRUD />} />
+      <Route path="/axios_get" element={<AxiosGet />} />
     </Routes>
   );
 };
