@@ -1,4 +1,9 @@
+import internal from "stream";
+
 export type taskContext = taskState & localState & TaskFunc & TaskFuncCoding & TaskFuncPlans & TaskFuncServermanagement & TaskFuncSlack & TaskFuncTips;
+
+export type apiContext = items & item & endpoint;
+// export type apiContext = items & item & endpoint & getAPISample;
 
 export type taskState = {
   storedtasks: storedtask[];
@@ -70,8 +75,20 @@ export type localstoragetask = {
 };
 
 export type selectTopic = {
-  selectTopic: "" | "Coding" | "Kintone" | "Plans" | "Servermanagement" | "Slack" | "Tips";
+  selectTopic: "" | "Coding" | "Kintone" | "Plans" | "Servermanagement" | "Slack" | "Tips" | "API";
 };
+
+export type item = {
+  id: number;
+  param1: number;
+  param2: number;
+  param3: number;
+  name: string;  
+}
+
+export type items = {
+  items: item[];
+}
 
 export type TaskFunc = {
   taskCreate: (title: string, content: string) => void;
@@ -132,3 +149,11 @@ export type TaskFuncTips = {
   loadLocalTips: () => void;
   selectPageTips: () => void;
 };
+
+export type endpoint = {
+  endpoint : string;
+}
+
+export type getAPISample = {
+  getAPI: (url: string) => void;
+}
