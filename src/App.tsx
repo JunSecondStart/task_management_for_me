@@ -50,6 +50,11 @@ const App:React.FC = () => {
             <li className="basis-1/3 text-5xl"><Link to="/">must do within a month</Link></li>
           </ul>
         </footer> */}
+        <section className="bg-gray-50">
+          <ul className="flex flex-row">
+            <li className="basis-1/6 text-2xl text-center m-0 hover:bg-green-50 text-green-300"><Link to="/mockread" onClick={()=>setPageTitle({selectTopic: "MockRead"})}><p className="py-4 w-xl h-16">MockRead</p></Link></li>
+          </ul>
+        </section>
       </TaskFieldContextProvider>
     </>
   );

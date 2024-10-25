@@ -1,0 +1,3 @@
+https://qiita.com/qq_kaq/items/efb3b41e3e5e2b862775
+
+yarn add --dev axios-mock-adapter 

@@ -5,6 +5,8 @@ export type taskContext = taskState & localState & TaskFunc & TaskFuncCoding & T
 export type apiContext = items & item & endpoint;
 // export type apiContext = items & item & endpoint & getAPISample;
 
+export type smsContext = users & user;
+
 export type taskState = {
   storedtasks: storedtask[];
   storedtasks_coding: storedtask_coding[];
@@ -75,7 +77,7 @@ export type localstoragetask = {
 };
 
 export type selectTopic = {
-  selectTopic: "" | "Coding" | "Kintone" | "Plans" | "Servermanagement" | "Slack" | "Tips" | "API";
+  selectTopic: "" | "Coding" | "Kintone" | "Plans" | "Servermanagement" | "Slack" | "Tips" | "API" | "MockRead";
 };
 
 export type item = {
@@ -88,6 +90,15 @@ export type item = {
 
 export type items = {
   items: item[];
+}
+
+export type user = {
+  id: number;
+  name: string;
+}
+
+export type users = {
+  users: user[];
 }
 
 export type TaskFunc = {
